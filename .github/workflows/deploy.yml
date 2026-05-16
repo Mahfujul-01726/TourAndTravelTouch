@@ -11,36 +11,31 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Validate FTP secrets
-        shell: bash
+      - name: Install LFTP
+        run: sudo apt-get update && sudo apt-get install -y lftp
+
+      - name: Deploy via LFTP
         env:
           FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
           FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
         run: |
-          if [ -z "$FTP_USERNAME" ]; then
-            echo "Missing repository secret: FTP_USERNAME"
+          if [ -z "$FTP_USERNAME" ] || [ -z "$FTP_PASSWORD" ]; then
+            echo "ERROR: Secrets FTP_USERNAME and FTP_PASSWORD must be set in GitHub repo Settings > Secrets and variables > Actions"
+            echo "Current FTP_USERNAME value length: ${#FTP_USERNAME}"
+            echo "Current FTP_PASSWORD value length: ${#FTP_PASSWORD}"
             exit 1
           fi
-
-          if [ -z "$FTP_PASSWORD" ]; then
-            echo "Missing repository secret: FTP_PASSWORD"
-            exit 1
-          fi
-      
-      - name: Deploy to FTP
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-        with:
-          server: ftpupload.net
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./
-          server-dir: /htdocs/
-          security: explicit
-          exclude: |
-            .git*
-            .github
-            .vscode
-            node_modules
-            README.md
-            opencode.json
-            *.psd
+          lftp -e "
+            set ftp:ssl-force true
+            set ftp:ssl-protect-data true
+            set ssl:verify-certificate no
+            mirror -R ./ /htdocs/ \
+              --exclude-glob .git* \
+              --exclude-glob .github \
+              --exclude-glob .vscode \
+              --exclude-glob node_modules \
+              --exclude-glob README.md \
+              --exclude-glob opencode.json \
+              --exclude-glob '*.psd'
+            quit
+          " -u "$FTP_USERNAME","$FTP_PASSWORD" ftpupload.net
