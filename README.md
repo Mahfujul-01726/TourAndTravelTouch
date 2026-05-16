@@ -462,8 +462,8 @@ Manage your bookings and users through a password-protected dashboard.
 
 | Feature | URL |
 |---------|-----|
-| **Login** | `https://tourandtraveltouch.great-site.net/backend/admin/login.php` |
-| **Dashboard** | (auto-redirects after login) |
+| **Admin Login** | [`https://tourandtraveltouch.great-site.net/backend/admin/login.php`](https://tourandtraveltouch.great-site.net/backend/admin/login.php) |
+| **Dashboard** | Auto-redirects after login |
 
 **Default credentials:**
 ```
@@ -474,14 +474,24 @@ Password: admin123
 > ⚡ **First visit** creates the admin table and default account automatically.  
 > ⚡ **Change the password** after first login for security.
 
-The admin panel shows:
-- **Stats cards** — total bookings, users, this month's activity
-- **Bookings table** — destination, travelers, dates, customer details
-- **Users table** — full name, email, registration date
+**Dashboard shows:**
+- Stats cards — total bookings & registered users
+- Bookings table — destination, travelers, dates, customer details
+- Users table — full name, email, registration date
 
 ---
 
-## 🤝 Contributing
+## 📈 Live URLs
+
+| Resource | URL |
+|----------|-----|
+| **Website** | [mahfujul-01726.github.io/TourAndTravelTouch](https://mahfujul-01726.github.io/TourAndTravelTouch) |
+| **Admin Panel** | [tourandtraveltouch.great-site.net/backend/admin/login.php](https://tourandtraveltouch.great-site.net/backend/admin/login.php) |
+| **Backend API** | [tourandtraveltouch.great-site.net/backend](https://tourandtraveltouch.great-site.net/backend) |
+
+---
+
+## ☁️ Deployment Options
 
 Contributions are what make the open-source community an incredible place to learn and grow.
 
