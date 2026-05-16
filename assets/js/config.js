@@ -8,4 +8,4 @@
  |
  | ⚠️  No trailing slash!
  */
-const BACKEND_URL = 'https://your-domain.infinityfreeapp.com';
+const BACKEND_URL = 'https://tourandtraveltouch.great-site.net';

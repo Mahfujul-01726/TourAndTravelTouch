@@ -1,11 +1,10 @@
 -- Tour And Travel Touch - Database Schema
 -- Database: firstsql
-
-CREATE DATABASE IF NOT EXISTS firstsql
-    DEFAULT CHARACTER SET utf8mb4
-    DEFAULT COLLATE utf8mb4_unicode_ci;
-
-USE firstsql;
+--
+-- ⚠️ InfinityFree: Create the database via Control Panel → MySQL Databases FIRST.
+--    Then open phpMyAdmin, select your DB, and import this file.
+--    The CREATE DATABASE / USE statements are intentionally removed.
+--    Updated in database.php with your InfinityFree DB name.
 
 -- Booking inquiries table
 CREATE TABLE IF NOT EXISTS information (
