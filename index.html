@@ -1,416 +1,1344 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tour And Travel Touch</title>
+    <title>Tour And Travel Touch - Explore Bangladesh</title>
+    <meta name="description" content="Tour And Travel Touch - Your trusted travel partner for exploring the best destinations in Bangladesh. Book packages, hotels, and tours.">
+    <meta name="keywords" content="Bangladesh travel, tour packages, Sundarbans, Srimangal, Saint Martin, travel booking">
+    <meta property="og:title" content="Tour And Travel Touch">
+    <meta property="og:description" content="Explore Bangladesh with the best travel deals and packages.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://tourandtraveltouch.com">
+    <meta name="theme-color" content="#ffa500">
 
     <link rel="stylesheet" href="assets/css/theme-orange.css">
-
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <!-- Navbar Start -->
-    <nav class="navbar navbar-expand-lg" id="navbar">
-        <div class="container">
-          <a class="navbar-brand" href="index.html" id="logo"><span>Tour And Travel</span>Touch</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
-            <span><i class="fa-solid fa-bars"></i></span>
-          </button>
-          <div class="collapse navbar-collapse" id="mynavbar">
-            <ul class="navbar-nav me-auto">
-              <li class="nav-item">
-                <a class="nav-link active" href="index.html">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#book">Book</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#packages">Packages</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#services">Services</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#gallary">Gallary</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#about">About</a>
-              </li>
-            </ul>
+    <!-- Flash Message Toast -->
+    <div id="flashToast" class="flash-toast" role="alert">
+        <span id="flashMessage"></span>
+        <button class="flash-close" onclick="closeFlash()">&times;</button>
+    </div>
 
-            <form class="example" action="backend/handlers/search.php" method="post" style="margin:auto;max-width:55%">
-              <input type="text" placeholder="Search by Name" name="search">
-              <button class="btn btn-primary" type="button">Search</button>
-            </form>
-          </div>
+    <!-- Interactive Particle Canvas -->
+    <canvas id="particleCanvas"></canvas>
+
+    <!-- Ambient cursor glow -->
+    <div id="ambientGlow"></div>
+
+    <!-- Scenic Background Slideshow -->
+    <div id="bg-slideshow">
+        <div class="bg-slide" style="background-image: url('assets/images/ui/background img.png')"></div>
+        <div class="bg-slide ocean-scene" style="background-image: url('assets/images/destinations/Saint Martin.jpeg')"></div>
+        <div class="bg-slide forest-scene" style="background-image: url('assets/images/destinations/Sundarbans.jpg')"></div>
+        <div class="bg-slide" style="background-image: url('assets/images/destinations/Rangamati.jpg')"></div>
+        <div class="bg-slide mountain-scene" style="background-image: url('assets/images/destinations/Bandarbans.jpg')"></div>
+        <div class="bg-slide" style="background-image: url('assets/images/destinations/Srimangal.jpeg')"></div>
+    </div>
+
+    <!-- Environmental Atmosphere Layers -->
+    <div id="atmosphere">
+        <div class="cloud cloud-1"><i class="fas fa-cloud"></i></div>
+        <div class="cloud cloud-2"><i class="fas fa-cloud"></i></div>
+        <div class="cloud cloud-3"><i class="fas fa-cloud"></i></div>
+        <div class="bird bird-1"><i class="fas fa-dove"></i></div>
+        <div class="bird bird-2"><i class="fas fa-dove"></i></div>
+        <div class="bird bird-3"><i class="fas fa-dove"></i></div>
+        <div class="water-shimmer"></div>
+    </div>
+
+    <!-- Navbar Start -->
+    <nav class="navbar navbar-expand-lg fixed-top" id="navbar">
+        <div class="container">
+            <a class="navbar-brand" href="index.html" id="logo">
+                <span class="brand-icon"><img src="assets/logo.png" alt="Tour And Travel Touch"></span>
+                <span class="brand-text" data-text="Tour And TravelTouch"><span>Tour And Travel</span>Touch</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar" aria-label="Toggle navigation">
+                <span class="toggler-icon"><i class="fa-solid fa-bars"></i></span>
+            </button>
+            <div class="collapse navbar-collapse" id="mynavbar">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#home">
+                            <i class="fa-solid fa-house"></i>
+                            <span>Home</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#packages">
+                            <i class="fa-solid fa-box"></i>
+                            <span>Packages</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#services">
+                            <i class="fa-solid fa-concierge-bell"></i>
+                            <span>Services</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#gallary">
+                            <i class="fa-solid fa-images"></i>
+                            <span>Gallery</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">
+                            <i class="fa-solid fa-circle-info"></i>
+                            <span>About</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#book">
+                            <i class="fa-solid fa-calendar-check"></i>
+                            <span>Book</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#search">
+                            <i class="fa-solid fa-search"></i>
+                            <span>Search</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-signup" href="pages/signup.html">
+                            <i class="fa-solid fa-user-plus"></i>
+                            <span>Sign Up</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </div>
-      </nav>
+    </nav>
     <!-- Navbar End -->
 
     <!-- Home Section Start -->
-    <div class="home">
-        <div class="content">
+    <section class="home" id="home">
+        <div class="parallax-layer" data-depth="0.1"></div>
+        <div class="parallax-layer" data-depth="0.3">
+            <div class="floating-icon" style="top:15%;left:10%"><i class="fas fa-plane"></i></div>
+            <div class="floating-icon" style="top:25%;right:12%"><i class="fas fa-mountain"></i></div>
+            <div class="floating-icon" style="bottom:20%;left:15%"><i class="fas fa-tree"></i></div>
+            <div class="floating-icon" style="bottom:30%;right:10%"><i class="fas fa-water"></i></div>
+            <div class="floating-icon" style="top:40%;left:5%"><i class="fas fa-camera"></i></div>
+            <div class="floating-icon" style="top:50%;right:5%"><i class="fas fa-location-dot"></i></div>
+        </div>
+        <div class="content" data-tilt data-tilt-max="8" data-tilt-speed="400">
             <h5>Welcome To Bangladesh</h5>
             <h1>Visit <span class="changecontent"></span></h1>
-            <p></p>
-            <a href="#book">Book Place</a>
+            <p>Discover the beauty of Bangladesh with exclusive travel packages and unforgettable experiences.</p>
+            <a href="#packages">Explore Packages</a>
         </div>
-    </div>
-    <!-- Home Section End -->
-
-    <!-- Section Book Start -->
-    <section class="book" id="book">
-      <div class="container">
-
-        <div class="main-text">
-          <h1><span>B</span>ook</h1>
-        </div>
-
-        <div class="row">
-
-          <div class="col-md-6 py-3 py-md-0">
-            <div class="card">
-              <img src="assets/images/ui/book-img.png" alt="">
-            </div>
-          </div>
-
-          <div class="col-md-6 py-3 py-md-0">
-            <form action="backend/handlers/booking.php" method="post">
-
-              <input type="text" class="form-control" name="whereto" placeholder="Where To" required><br>
-              <input type="text" class="form-control" name="howmany" placeholder="How Many" required><br>
-              <input type="date" class="form-control" name="arrival" placeholder="Arrivals" required><br>
-              <input type="date" class="form-control" name="leaving" placeholder="Leaving" required><br>
-              <textarea class="form-control" rows="5" name="text" placeholder="Enter Your Name & Details"></textarea>
-              <input type="submit" value="Book Now" class="submit" required>
-
-            </form>
-          </div>
-
-        </div>
-      </div>
     </section>
-    <!-- Section Book End -->
+    <!-- Home Section End -->
 
     <!-- Section Packages Start -->
     <section class="packages" id="packages">
-      <div class="container">
-
-        <div class="main-txt">
-          <h1><span>P</span>ackages</h1>
+        <!-- Dedicated background slideshow inside packages stacking context -->
+        <div class="packages-bg-slideshow">
+            <div class="pk-bg-slide" style="background-image: url('assets/images/ui/background img.png')"></div>
+            <div class="pk-bg-slide" style="background-image: url('assets/images/destinations/Saint Martin.jpeg')"></div>
+            <div class="pk-bg-slide" style="background-image: url('assets/images/destinations/Sundarbans.jpg')"></div>
+            <div class="pk-bg-slide" style="background-image: url('assets/images/destinations/Rangamati.jpg')"></div>
+            <div class="pk-bg-slide" style="background-image: url('assets/images/destinations/Bandarbans.jpg')"></div>
+            <div class="pk-bg-slide" style="background-image: url('assets/images/destinations/Srimangal.jpeg')"></div>
         </div>
 
-        <div class="row" style="margin-top: 30px;">
+        <!-- Dark vignette overlay for depth -->
+        <div class="packages-bg-vignette"></div>
 
-          <div class="col-md-4 py-3 py-md-0">
-            <div class="card">
-              <img src="assets/images/destinations/Sundarbans.jpg" alt="">
-              <div class="card-body">
-                <h3>Sundarbans</h3>
-                <p>Sundarban is the biggest mangrove forest in the world and it is recognized by UNESCO!</p>
-                <div class="star">
-                  <i class="fa-solid fa-star checked"></i>
-                  <i class="fa-solid fa-star checked"></i>
-                  <i class="fa-solid fa-star checked"></i>
-                  <i class="fa-solid fa-star checked"></i>
-                  <i class="fa-solid fa-star checked"></i>
-                </div>
-                <h6>Price: <strong>5000</strong></h6>
-                <a href="#book">Book Now</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-4 py-3 py-md-0">
-            <div class="card">
-              <img src="assets/images/destinations/Srimangal.jpeg" alt="">
-              <div class="card-body">
-                <h3>Srimangal</h3>
-                <p>Srimangal in the Moulvibazar district can be called the tea capital of Bangladesh.</p>
-                <div class="star">
-                  <i class="fa-solid fa-star checked"></i>
-                  <i class="fa-solid fa-star checked"></i>
-                  <i class="fa-solid fa-star checked"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                </div>
-                <h6>Price: <strong>5500</strong></h6>
-                <a href="#book">Book Now</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-4 py-3 py-md-0">
-            <div class="card">
-              <img src="assets/images/destinations/Rangamati.jpg" alt="">
-              <div class="card-body">
-                <h3>Rangamati</h3>
-                <p>Kaptai Lake is a man made lake in south-eastern Bangladesh and this hanging bridge is established on it</p>
-                <div class="star">
-                  <i class="fa-solid fa-star checked"></i>
-                  <i class="fa-solid fa-star checked"></i>
-                  <i class="fa-solid fa-star checked"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                </div>
-                <h6>Price: <strong>7700</strong></h6>
-                <a href="#book">Book Now</a>
-              </div>
-            </div>
-          </div>
-
+        <!-- Scene-aware ambient overlay -->
+        <div class="packages-scene-overlay" id="packagesSceneOverlay">
+            <div class="scene-light scene-light-1"></div>
+            <div class="scene-light scene-light-2"></div>
+            <div class="scene-light scene-light-3"></div>
         </div>
 
-        <div class="row" style="margin-top: 30px;">
-
-          <div class="col-md-4 py-3 py-md-0">
-            <div class="card">
-              <img src="assets/images/destinations/Bandarbans.jpg" alt="">
-              <div class="card-body">
-                <h3>Bandarbans</h3>
-                <p>Bandarban is one of the three hill districts of Bangladesh and a part of the Chittagong Hill Tracts.</p>
-                <div class="star">
-                  <i class="fa-solid fa-star checked"></i>
-                  <i class="fa-solid fa-star checked"></i>
-                  <i class="fa-solid fa-star checked"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                </div>
-                <h6>Price: <strong>6000</strong></h6>
-                <a href="#book">Book Now</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-4 py-3 py-md-0">
-            <div class="card">
-              <img src="assets/images/destinations/Saint Martin.jpeg" alt="">
-              <div class="card-body">
-                <h3>Saint Martin</h3>
-                <p>Saint Martin Island is a small island in the northeastern part of the Bay of Bengal.</p>
-                <div class="star">
-                  <i class="fa-solid fa-star checked"></i>
-                  <i class="fa-solid fa-star checked"></i>
-                  <i class="fa-solid fa-star checked"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                </div>
-                <h6>Price: <strong>8000</strong></h6>
-                <a href="#book">Book Now</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-4 py-3 py-md-0">
-            <div class="card">
-              <img src="assets/images/destinations/Shait-Gumbad Mosque.jpeg" alt="">
-              <div class="card-body">
-                <h3>Shait-Gumbad Mosque</h3>
-                <p>The Sixty Dome Mosque was built during the Bengal Sultanate by Khan Jahan Ali.</p>
-                <div class="star">
-                  <i class="fa-solid fa-star checked"></i>
-                  <i class="fa-solid fa-star checked"></i>
-                  <i class="fa-solid fa-star checked"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                </div>
-                <h6>Price: <strong>1500</strong></h6>
-                <a href="#book">Book Now</a>
-              </div>
-            </div>
-          </div>
-
+        <!-- Cinematic floating particles -->
+        <div class="packages-particles">
+            <div class="packages-particle"></div>
+            <div class="packages-particle"></div>
+            <div class="packages-particle"></div>
+            <div class="packages-particle"></div>
+            <div class="packages-particle"></div>
+            <div class="packages-particle"></div>
+            <div class="packages-particle"></div>
+            <div class="packages-particle"></div>
+            <div class="packages-particle"></div>
+            <div class="packages-particle"></div>
         </div>
 
-      </div>
+        <!-- Light rays -->
+        <div class="packages-light-rays">
+            <div class="light-ray"></div>
+            <div class="light-ray"></div>
+            <div class="light-ray"></div>
+            <div class="light-ray"></div>
+            <div class="light-ray"></div>
+        </div>
+
+        <!-- Water reflection -->
+        <div class="packages-water-reflection" id="packagesWaterReflection"></div>
+
+        <div class="container">
+            <div class="main-txt">
+                <h1 data-animate="fade-up"><span>D</span>estinations</h1>
+                <p class="section-subtitle" data-animate="fade-up" data-delay="50">Discover the most breathtaking places across Bangladesh</p>
+            </div>
+
+            <div class="row" style="margin-top: 40px;">
+                <div class="col-md-4 py-3 py-md-0" data-animate="fade-up" data-delay="0">
+                    <div class="card tilt-card float-card" data-tilt data-tilt-max="10" data-tilt-speed="300" data-float-delay="0" data-scene="forest">
+                        <div class="card-glow-border"></div>
+                        <div class="card-parallax-shadow"></div>
+                        <div class="card-badge">Popular</div>
+                        <div class="card-img">
+                            <img src="assets/images/destinations/Sundarbans.jpg" alt="Sundarbans mangrove forest">
+                            <div class="card-overlay"></div>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-category"><i class="fa-solid fa-tree"></i> Forest</div>
+                            <h3>Sundarbans</h3>
+                            <p>The world's largest mangrove forest, a UNESCO World Heritage Site teeming with wildlife.</p>
+                            <div class="card-meta">
+                                <div class="star">
+                                    <i class="fa-solid fa-star checked"></i>
+                                    <i class="fa-solid fa-star checked"></i>
+                                    <i class="fa-solid fa-star checked"></i>
+                                    <i class="fa-solid fa-star checked"></i>
+                                    <i class="fa-solid fa-star checked"></i>
+                                </div>
+                                <span class="rating">5.0</span>
+                            </div>
+                            <div class="card-footer">
+                                <div class="price">
+                                    <span class="price-label">From</span>
+                                    <strong>5000</strong> <small>BDT</small>
+                                </div>
+                                <a href="#book" class="btn-book">Book Now <i class="fa-solid fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 py-3 py-md-0" data-animate="fade-up" data-delay="100">
+                    <div class="card tilt-card float-card" data-tilt data-tilt-max="10" data-tilt-speed="300" data-float-delay="0.5" data-scene="mountain">
+                        <div class="card-glow-border"></div>
+                        <div class="card-parallax-shadow"></div>
+                        <div class="card-badge card-badge-green">Nature</div>
+                        <div class="card-img">
+                            <img src="assets/images/destinations/Srimangal.jpeg" alt="Srimangal tea gardens">
+                            <div class="card-overlay"></div>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-category"><i class="fa-solid fa-leaf"></i> Tea Garden</div>
+                            <h3>Srimangal</h3>
+                            <p>The tea capital of Bangladesh, with rolling green hills and endless tea estates.</p>
+                            <div class="card-meta">
+                                <div class="star">
+                                    <i class="fa-solid fa-star checked"></i>
+                                    <i class="fa-solid fa-star checked"></i>
+                                    <i class="fa-solid fa-star checked"></i>
+                                    <i class="fa-solid fa-star checked"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                </div>
+                                <span class="rating">4.0</span>
+                            </div>
+                            <div class="card-footer">
+                                <div class="price">
+                                    <span class="price-label">From</span>
+                                    <strong>5500</strong> <small>BDT</small>
+                                </div>
+                                <a href="#book" class="btn-book">Book Now <i class="fa-solid fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 py-3 py-md-0" data-animate="fade-up" data-delay="200">
+                    <div class="card tilt-card float-card" data-tilt data-tilt-max="10" data-tilt-speed="300" data-float-delay="1" data-scene="ocean">
+                        <div class="card-glow-border"></div>
+                        <div class="card-parallax-shadow"></div>
+                        <div class="card-badge card-badge-blue">Lake</div>
+                        <div class="card-img">
+                            <img src="assets/images/destinations/Rangamati.jpg" alt="Rangamati hanging bridge">
+                            <div class="card-overlay"></div>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-category"><i class="fa-solid fa-water"></i> Lake View</div>
+                            <h3>Rangamati</h3>
+                            <p>A serene hill district with the famous Kaptai Lake and hanging bridge over turquoise waters.</p>
+                            <div class="card-meta">
+                                <div class="star">
+                                    <i class="fa-solid fa-star checked"></i>
+                                    <i class="fa-solid fa-star checked"></i>
+                                    <i class="fa-solid fa-star checked"></i>
+                                    <i class="fa-solid fa-star checked"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                </div>
+                                <span class="rating">4.0</span>
+                            </div>
+                            <div class="card-footer">
+                                <div class="price">
+                                    <span class="price-label">From</span>
+                                    <strong>7700</strong> <small>BDT</small>
+                                </div>
+                                <a href="#book" class="btn-book">Book Now <i class="fa-solid fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" style="margin-top: 30px;">
+                <div class="col-md-4 py-3 py-md-0" data-animate="fade-up" data-delay="0">
+                    <div class="card tilt-card float-card" data-tilt data-tilt-max="10" data-tilt-speed="300" data-float-delay="0.2" data-scene="mountain">
+                        <div class="card-glow-border"></div>
+                        <div class="card-parallax-shadow"></div>
+                        <div class="card-badge card-badge-purple">Hill</div>
+                        <div class="card-img">
+                            <img src="assets/images/destinations/Bandarbans.jpg" alt="Bandarbans hill tracts">
+                            <div class="card-overlay"></div>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-category"><i class="fa-solid fa-mountain"></i> Hill Track</div>
+                            <h3>Bandarbans</h3>
+                            <p>One of the three hill districts of Bangladesh, offering breathtaking mountain scenery.</p>
+                            <div class="card-meta">
+                                <div class="star">
+                                    <i class="fa-solid fa-star checked"></i>
+                                    <i class="fa-solid fa-star checked"></i>
+                                    <i class="fa-solid fa-star checked"></i>
+                                    <i class="fa-solid fa-star checked"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                </div>
+                                <span class="rating">4.0</span>
+                            </div>
+                            <div class="card-footer">
+                                <div class="price">
+                                    <span class="price-label">From</span>
+                                    <strong>6000</strong> <small>BDT</small>
+                                </div>
+                                <a href="#book" class="btn-book">Book Now <i class="fa-solid fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 py-3 py-md-0" data-animate="fade-up" data-delay="100">
+                    <div class="card tilt-card float-card" data-tilt data-tilt-max="10" data-tilt-speed="300" data-float-delay="0.7" data-scene="beach">
+                        <div class="card-glow-border"></div>
+                        <div class="card-parallax-shadow"></div>
+                        <div class="card-badge card-badge-teal">Beach</div>
+                        <div class="card-img">
+                            <img src="assets/images/destinations/Saint Martin.jpeg" alt="Saint Martin Island beach">
+                            <div class="card-overlay"></div>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-category"><i class="fa-solid fa-umbrella-beach"></i> Beach</div>
+                            <h3>Saint Martin</h3>
+                            <p>A tropical island paradise in the Bay of Bengal with crystal-clear waters and coral reefs.</p>
+                            <div class="card-meta">
+                                <div class="star">
+                                    <i class="fa-solid fa-star checked"></i>
+                                    <i class="fa-solid fa-star checked"></i>
+                                    <i class="fa-solid fa-star checked"></i>
+                                    <i class="fa-solid fa-star checked"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                </div>
+                                <span class="rating">4.0</span>
+                            </div>
+                            <div class="card-footer">
+                                <div class="price">
+                                    <span class="price-label">From</span>
+                                    <strong>8000</strong> <small>BDT</small>
+                                </div>
+                                <a href="#book" class="btn-book">Book Now <i class="fa-solid fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 py-3 py-md-0" data-animate="fade-up" data-delay="200">
+                    <div class="card tilt-card float-card" data-tilt data-tilt-max="10" data-tilt-speed="300" data-float-delay="1.2" data-scene="city">
+                        <div class="card-glow-border"></div>
+                        <div class="card-parallax-shadow"></div>
+                        <div class="card-badge">History</div>
+                        <div class="card-img">
+                            <img src="assets/images/destinations/Shait-Gumbad Mosque.jpeg" alt="Sixty Dome Mosque">
+                            <div class="card-overlay"></div>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-category"><i class="fa-solid fa-landmark"></i> Heritage</div>
+                            <h3>Shait-Gumbad Mosque</h3>
+                            <p>The historic Sixty Dome Mosque, a magnificent architectural wonder from the Bengal Sultanate.</p>
+                            <div class="card-meta">
+                                <div class="star">
+                                    <i class="fa-solid fa-star checked"></i>
+                                    <i class="fa-solid fa-star checked"></i>
+                                    <i class="fa-solid fa-star checked"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                </div>
+                                <span class="rating">3.0</span>
+                            </div>
+                            <div class="card-footer">
+                                <div class="price">
+                                    <span class="price-label">From</span>
+                                    <strong>1500</strong> <small>BDT</small>
+                                </div>
+                                <a href="#book" class="btn-book">Book Now <i class="fa-solid fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
     <!-- Section Packages End -->
 
     <!-- Section Services Start -->
     <section class="services" id="services">
-      <div class="container">
+        <div class="container">
+            <div class="main-txt">
+                <h1 data-animate="fade-up"><span>S</span>ervices</h1>
+            </div>
 
-        <div class="main-txt">
-          <h1><span>S</span>ervices</h1>
+            <div class="row" style="margin-top: 30px;">
+                <div class="col-md-4 py-3 py-md-0" data-animate="fade-up" data-delay="0">
+                    <div class="card tilt-card" data-tilt data-tilt-max="8" data-tilt-speed="300" data-tilt-scale="1.02">
+                        <i class="fas fa-hotel"></i>
+                        <div class="card-body">
+                            <h3>Affordable Hotel</h3>
+                            <p>Comfortable stays at the best prices across Bangladesh.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 py-3 py-md-0" data-animate="fade-up" data-delay="100">
+                    <div class="card tilt-card" data-tilt data-tilt-max="8" data-tilt-speed="300" data-tilt-scale="1.02">
+                        <i class="fas fa-utensils"></i>
+                        <div class="card-body">
+                            <h3>Food & Drinks</h3>
+                            <p>Authentic local cuisine and refreshing beverages throughout your journey.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 py-3 py-md-0" data-animate="fade-up" data-delay="200">
+                    <div class="card tilt-card" data-tilt data-tilt-max="8" data-tilt-speed="300" data-tilt-scale="1.02">
+                        <i class="fas fa-bullhorn"></i>
+                        <div class="card-body">
+                            <h3>Safety Guide</h3>
+                            <p>Professional guides ensuring a safe and memorable travel experience.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" style="margin-top: 30px;">
+                <div class="col-md-4 py-3 py-md-0" data-animate="fade-up" data-delay="0">
+                    <div class="card tilt-card" data-tilt data-tilt-max="8" data-tilt-speed="300" data-tilt-scale="1.02">
+                        <i class="fas fa-globe-asia"></i>
+                        <div class="card-body">
+                            <h3>Around The Country</h3>
+                            <p>Explore every corner of Bangladesh with our curated itineraries.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 py-3 py-md-0" data-animate="fade-up" data-delay="100">
+                    <div class="card tilt-card" data-tilt data-tilt-max="8" data-tilt-speed="300" data-tilt-scale="1.02">
+                        <i class="fas fa-plane"></i>
+                        <div class="card-body">
+                            <h3>Fastest Travel</h3>
+                            <p>Efficient transportation arrangements to maximize your travel time.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 py-3 py-md-0" data-animate="fade-up" data-delay="200">
+                    <div class="card tilt-card" data-tilt data-tilt-max="8" data-tilt-speed="300" data-tilt-scale="1.02">
+                        <i class="fas fa-hiking"></i>
+                        <div class="card-body">
+                            <h3>Adventures</h3>
+                            <p>Thrilling adventures and outdoor activities for the daring traveler.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-
-        <div class="row" style="margin-top: 30px;">
-
-          <div class="col-md-4 py-3 py-md-0">
-            <div class="card">
-              <i class="fas fa-hotel"></i>
-              <div class="card-body">
-                <h3>Affordable Hotel</h3>
-                <p></p>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-4 py-3 py-md-0">
-            <div class="card">
-              <i class="fas fa-utensils"></i>
-              <div class="card-body">
-                <h3>Food & Drinks</h3>
-                <p></p>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-4 py-3 py-md-0">
-            <div class="card">
-              <i class="fas fa-bullhorn"></i>
-              <div class="card-body">
-                <h3>Safty Guide</h3>
-                <p></p>
-              </div>
-            </div>
-          </div>
-
-        </div>
-
-        <div class="row" style="margin-top: 30px;">
-
-          <div class="col-md-4 py-3 py-md-0">
-            <div class="card">
-              <i class="fas fa-globe-asia"></i>
-              <div class="card-body">
-                <h3>Around The Country</h3>
-                <p></p>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-4 py-3 py-md-0">
-            <div class="card">
-              <i class="fas fa-plane"></i>
-              <div class="card-body">
-                <h3>Fastest Travel</h3>
-                <p></p>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-4 py-3 py-md-0">
-            <div class="card">
-              <i class="fas fa-hiking"></i>
-              <div class="card-body">
-                <h3>Adventures</h3>
-                <p></p>
-              </div>
-            </div>
-          </div>
-
-        </div>
-
-      </div>
     </section>
     <!-- Section Services End -->
 
     <!-- Section Gallary Start -->
     <section class="gallary" id="gallary">
-      <div class="container">
+        <div class="container">
+            <div class="main-txt">
+                <h1 data-animate="fade-up"><span>G</span>allery</h1>
+            </div>
 
-        <div class="main-txt">
-          <h1><span>G</span>allary</h1>
+            <div class="row" style="margin-top: 30px;">
+                <div class="col-md-4 py-3 py-md-0" data-animate="fade-up" data-delay="0">
+                    <div class="card tilt-card" data-tilt data-tilt-max="10" data-tilt-speed="300">
+                        <img src="assets/images/destinations/A1.jpeg" alt="Beautiful Bangladesh landscape" height="230px" loading="lazy">
+                    </div>
+                </div>
+                <div class="col-md-4 py-3 py-md-0" data-animate="fade-up" data-delay="100">
+                    <div class="card tilt-card" data-tilt data-tilt-max="10" data-tilt-speed="300">
+                        <img src="assets/images/destinations/A2.jpeg" alt="Scenic view of Bangladesh" height="230px" loading="lazy">
+                    </div>
+                </div>
+                <div class="col-md-4 py-3 py-md-0" data-animate="fade-up" data-delay="200">
+                    <div class="card tilt-card" data-tilt data-tilt-max="10" data-tilt-speed="300">
+                        <img src="assets/images/destinations/A3.jpeg" alt="Travel destination in Bangladesh" height="230px" loading="lazy">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" style="margin-top: 30px;">
+                <div class="col-md-4 py-3 py-md-0" data-animate="fade-up" data-delay="0">
+                    <div class="card tilt-card" data-tilt data-tilt-max="10" data-tilt-speed="300">
+                        <img src="assets/images/destinations/A4.jpg" alt="Bangladesh travel scenery" height="230px" loading="lazy">
+                    </div>
+                </div>
+                <div class="col-md-4 py-3 py-md-0" data-animate="fade-up" data-delay="100">
+                    <div class="card tilt-card" data-tilt data-tilt-max="10" data-tilt-speed="300">
+                        <img src="assets/images/destinations/A5.jpg" alt="Natural beauty of Bangladesh" height="230px" loading="lazy">
+                    </div>
+                </div>
+                <div class="col-md-4 py-3 py-md-0" data-animate="fade-up" data-delay="200">
+                    <div class="card tilt-card" data-tilt data-tilt-max="10" data-tilt-speed="300">
+                        <img src="assets/images/destinations/A6.jpeg" alt="Explore Bangladesh" height="230px" loading="lazy">
+                    </div>
+                </div>
+            </div>
         </div>
-
-        <div class="row" style="margin-top: 30px;">
-          <div class="col-md-4 py-3 py-md-0">
-            <div class="card">
-              <img src="assets/images/destinations/A1.jpeg" alt="" height="230px">
-            </div>
-          </div>
-          <div class="col-md-4 py-3 py-md-0">
-            <div class="card">
-              <img src="assets/images/destinations/A2.jpeg" alt="" height="230px">
-            </div>
-          </div>
-          <div class="col-md-4 py-3 py-md-0">
-            <div class="card">
-              <img src="assets/images/destinations/A3.jpeg" alt="" height="230px">
-            </div>
-          </div>
-        </div>
-
-        <div class="row" style="margin-top: 30px;">
-          <div class="col-md-4 py-3 py-md-0">
-            <div class="card">
-              <img src="assets/images/destinations/A4.jpg" alt="" height="230px">
-            </div>
-          </div>
-          <div class="col-md-4 py-3 py-md-0">
-            <div class="card">
-              <img src="assets/images/destinations/A5.jpg" alt="" height="230px">
-            </div>
-          </div>
-          <div class="col-md-4 py-3 py-md-0">
-            <div class="card">
-              <img src="assets/images/destinations/A6.jpeg" alt="" height="230px">
-            </div>
-          </div>
-        </div>
-
-      </div>
     </section>
     <!-- Section Gallary End -->
 
     <!-- About Start -->
     <section class="about" id="about">
-      <div class="container">
-
-        <div class="main-txt">
-          <h1>About <span>Us</span></h1>
-        </div>
-
-        <div class="row" style="margin-top: 50px;">
-
-          <div class="col-md-6 py-3 py-md-0">
-            <div class="card">
-              <img src="assets/images/ui/about-img.png" alt="">
+        <div class="container">
+            <div class="main-txt">
+                <h1 data-animate="fade-up">About <span>Us</span></h1>
             </div>
-          </div>
 
-          <div class="col-md-6 py-3 py-md-0">
-            <h2>How Tour&TravelTouch Work</h2>
-            <p>Tour&TravelTouch is an online travel platform that brings high-value and rewarding travel experiences to people all over the country through the Tour&TravelTouch website. Our mission is to empower everyone to be a traveler by offering affordable deals on hotels, flights, activities, and more, with an online booking experience that is hassle-free from start to finish</p>
-            <button id="about-btn">Read More...</button>
-          </div>
+            <div class="row" style="margin-top: 50px;">
+                <div class="col-md-6 py-3 py-md-0" data-animate="fade-left">
+                    <div class="card tilt-card" data-tilt data-tilt-max="6" data-tilt-speed="300">
+                        <img src="assets/images/ui/about-img.png" alt="About Tour And Travel Touch">
+                    </div>
+                </div>
 
+                <div class="col-md-6 py-3 py-md-0" data-animate="fade-right">
+                    <h2>How Tour & Travel Touch Works</h2>
+                    <p>Tour & Travel Touch is an online travel platform that brings high-value and rewarding travel experiences to people all over the country through our website. Our mission is to empower everyone to be a traveler by offering affordable deals on hotels, flights, activities, and more, with an online booking experience that is hassle-free from start to finish.</p>
+                    <button id="about-btn">Read More</button>
+                </div>
+            </div>
         </div>
-
-      </div>
     </section>
     <!-- About End -->
 
+    <!-- Section Book Start -->
+    <section class="book" id="book">
+        <div class="container">
+            <div class="main-text">
+                <h1 data-animate="fade-up"><span>B</span>ook</h1>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 py-3 py-md-0" data-animate="fade-left">
+                    <div class="card tilt-card" data-tilt data-tilt-max="5" data-tilt-speed="300">
+                        <img src="assets/images/ui/book-img.png" alt="Book your tour">
+                    </div>
+                </div>
+
+                <div class="col-md-6 py-3 py-md-0" data-animate="fade-right">
+                    <form action="backend/handlers/booking.php" method="post">
+                        <input type="text" class="form-control" name="whereto" placeholder="Where To" required>
+                        <input type="text" class="form-control" name="howmany" placeholder="How Many" required>
+                        <input type="date" class="form-control" name="arrival" placeholder="Arrivals" required>
+                        <input type="date" class="form-control" name="leaving" placeholder="Leaving" required>
+                        <textarea class="form-control" rows="5" name="text" placeholder="Enter Your Name & Details" required></textarea>
+                        <input type="submit" value="Book Now" class="submit" required>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Section Book End -->
+
+    <!-- Section Search Start -->
+    <section class="search-section" id="search">
+        <div class="container">
+            <div class="main-txt">
+                <h1 data-animate="fade-up"><span>S</span>earch Bookings</h1>
+            </div>
+            <div class="row justify-content-center" style="margin-top: 30px;">
+                <div class="col-md-6" data-animate="fade-up">
+                    <div class="search-card">
+                        <form action="backend/handlers/search.php" method="post">
+                            <div class="search-input-group">
+                                <input type="text" class="form-control search-input" name="search" placeholder="Search by your name or details..." required>
+                                <button type="submit" class="search-submit"><i class="fa-solid fa-search"></i> Search</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Section Search End -->
+
     <!-- Footer Start -->
     <footer id="footer">
-      <h1><span>Tour And Travel</span>Touch</h1>
-      <p></p>
-      <div class="social-links">
-        <i class="fa-brands fa-twitter"></i>
-        <i class="fa-brands fa-facebook"></i>
-        <i class="fa-brands fa-instagram"></i>
-        <i class="fa-brands fa-youtube"></i>
-        <i class="fa-brands fa-pinterest-p"></i>
-      </div>
-      <div class="credit">
-        <p>Designed By <a href="#">Mahfujul Karim</a></p>
-      </div>
-      <div class="copyright">
-        <p>&copy;Copyright Mahfuj coding. All Rights Reserved</p>
-      </div>
+        <div class="footer-bg-layer">
+            <div class="footer-glow footer-glow-1"></div>
+            <div class="footer-glow footer-glow-2"></div>
+            <div class="footer-glow footer-glow-3"></div>
+            <div class="footer-grid"></div>
+
+            <!-- Water wave layers -->
+            <div class="water-surface">
+                <div class="water-wave water-wave-1"></div>
+                <div class="water-wave water-wave-2"></div>
+                <div class="water-wave water-wave-3"></div>
+            </div>
+
+            <!-- Water reflection/ripple circles -->
+            <div class="water-ripple ripple-1"></div>
+            <div class="water-ripple ripple-2"></div>
+            <div class="water-ripple ripple-3"></div>
+            <div class="water-ripple ripple-4"></div>
+
+            <!-- Light reflections shimmering on water -->
+            <div class="water-reflection reflection-1"></div>
+            <div class="water-reflection reflection-2"></div>
+            <div class="water-reflection reflection-3"></div>
+            <div class="water-reflection reflection-4"></div>
+            <div class="water-reflection reflection-5"></div>
+
+            <!-- Shimmer overlay -->
+            <div class="water-shimmer-overlay"></div>
+        </div>
+
+        <div class="footer-top-divider">
+            <svg viewBox="0 0 1440 60" preserveAspectRatio="none">
+                <path d="M0,30 C360,60 720,0 1440,30 L1440,60 L0,60 Z" fill="var(--orange-gradient)"/>
+            </svg>
+        </div>
+
+        <div class="container">
+            <!-- Newsletter -->
+            <div class="footer-newsletter" data-animate="fade-up">
+                <div class="newsletter-content">
+                    <div class="newsletter-icon"><i class="fa-solid fa-paper-plane"></i></div>
+                    <div>
+                        <h3>Get Exclusive Deals</h3>
+                        <p>Subscribe for hidden gems & travel inspiration</p>
+                    </div>
+                </div>
+                <form class="newsletter-form" id="newsletterForm">
+                    <input type="email" class="newsletter-input" placeholder="Enter your email" required>
+                    <button type="submit" class="newsletter-btn">Subscribe <i class="fa-solid fa-arrow-right"></i></button>
+                </form>
+            </div>
+
+            <div class="footer-main">
+                <div class="row">
+                    <div class="col-lg-4 footer-col" data-animate="fade-up" data-delay="0">
+                        <div class="footer-brand-wrap">
+                            <span class="footer-brand-icon"><img src="assets/logo1.png" alt="Tour And Travel Touch"></span>
+                            <h1 class="footer-brand"><span>Tour And Travel</span>Touch</h1>
+                        </div>
+                        <p class="footer-desc">Your trusted travel partner for exploring the beauty of Bangladesh. We offer the best packages, hotels, and travel services across the country.</p>
+                        <div class="footer-stats">
+                            <div class="stat-item">
+                                <span class="stat-number" data-count="500">0</span>
+                                <span class="stat-label">Tours</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number" data-count="12000">0</span>
+                                <span class="stat-label">Travelers</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number" data-count="50">0</span>
+                                <span class="stat-label">Destinations</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 footer-col" data-animate="fade-up" data-delay="100">
+                        <h4>Quick Links</h4>
+                        <ul class="footer-links">
+                            <li><a href="#home"><i class="fa-solid fa-chevron-right"></i> <span>Home</span></a></li>
+                            <li><a href="#packages"><i class="fa-solid fa-chevron-right"></i> <span>Packages</span></a></li>
+                            <li><a href="#services"><i class="fa-solid fa-chevron-right"></i> <span>Services</span></a></li>
+                            <li><a href="#gallary"><i class="fa-solid fa-chevron-right"></i> <span>Gallery</span></a></li>
+                            <li><a href="#about"><i class="fa-solid fa-chevron-right"></i> <span>About</span></a></li>
+                            <li><a href="#book"><i class="fa-solid fa-chevron-right"></i> <span>Book Now</span></a></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-3 footer-col" data-animate="fade-up" data-delay="200">
+                        <h4>Contact Info</h4>
+                        <ul class="footer-contact">
+                            <li><a href="#"><span class="contact-icon"><i class="fas fa-map-marker-alt"></i></span> <span>Dhaka, Bangladesh</span></a></li>
+                            <li><a href="tel:+8801234567890"><span class="contact-icon"><i class="fas fa-phone"></i></span> <span>+880 1234 567 890</span></a></li>
+                            <li><a href="mailto:info@tourandtraveltouch.com"><span class="contact-icon"><i class="fas fa-envelope"></i></span> <span>info@tourandtraveltouch.com</span></a></li>
+                            <li><a href="#"><span class="contact-icon"><i class="fas fa-clock"></i></span> <span>Sat–Thu, 9AM–9PM</span></a></li>
+                        </ul>
+                        <div class="social-links">
+                            <a href="#" class="social-link fb" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                            <a href="#" class="social-link tw" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></a>
+                            <a href="#" class="social-link ig" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                            <a href="#" class="social-link yt" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                            <a href="#" class="social-link li" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 footer-col" data-animate="fade-up" data-delay="300">
+                        <h4>Payment Methods</h4>
+                        <div class="payment-methods">
+                            <div class="payment-card">
+                                <i class="fa-brands fa-cc-visa"></i>
+                                <span>Visa</span>
+                            </div>
+                            <div class="payment-card">
+                                <i class="fa-brands fa-cc-mastercard"></i>
+                                <span>Mastercard</span>
+                            </div>
+                            <div class="payment-card">
+                                <i class="fa-brands fa-cc-paypal"></i>
+                                <span>PayPal</span>
+                            </div>
+                            <div class="payment-card">
+                                <i class="fa-brands fa-cc-amex"></i>
+                                <span>Amex</span>
+                            </div>
+                        </div>
+                        <div class="footer-badge">
+                            <i class="fa-solid fa-shield-halved"></i>
+                            <span>100% Secure Booking</span>
+                        </div>
+                        <div class="footer-badge">
+                            <i class="fa-solid fa-headset"></i>
+                            <span>24/7 Customer Support</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="footer-bottom-inner">
+                    <p class="copyright">&copy; <span id="footerYear">2026</span> <strong>Tour And Travel Touch</strong>. All Rights Reserved.</p>
+                    <div class="footer-bottom-links">
+                        <a href="#">Privacy Policy</a>
+                        <a href="#">Terms of Service</a>
+                        <a href="#">Cookie Policy</a>
+                    </div>
+                    <p class="credit">Designed by <a href="#">Mahfujul Karim</a></p>
+                </div>
+            </div>
+        </div>
     </footer>
     <!-- Footer End -->
 
+    <!-- Back to Top Button -->
+    <button id="back-to-top" aria-label="Back to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+    <script>
+        // Dynamic navbar shrink & hide on scroll
+        const navbar = document.getElementById('navbar');
+        let lastScroll = 0;
+
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.scrollY;
+
+            navbar.classList.toggle('scrolled', currentScroll > 80);
+
+            if (currentScroll > 250) {
+                if (currentScroll > lastScroll && currentScroll > 300) {
+                    navbar.style.transform = 'translateY(-120%)';
+                } else {
+                    navbar.style.transform = 'translateY(0)';
+                }
+            } else {
+                navbar.style.transform = 'translateY(0)';
+            }
+
+            lastScroll = currentScroll;
+        });
+
+        // Active nav link highlighting with Intersection Observer
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        const sectionObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const id = entry.target.getAttribute('id');
+                    navLinks.forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href') === '#' + id) {
+                            link.classList.add('active');
+                        }
+                    });
+                }
+            });
+        }, {
+            rootMargin: '-40% 0px -55% 0px'
+        });
+
+        sections.forEach(section => sectionObserver.observe(section));
+
+        // Scroll reveal animation
+        const animateElements = document.querySelectorAll('[data-animate]');
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const el = entry.target;
+                    const delay = parseInt(el.getAttribute('data-delay')) || 0;
+                    setTimeout(() => {
+                        el.classList.add('animate-in');
+                    }, delay);
+                    observer.unobserve(el);
+                }
+            });
+        }, { threshold: 0.15 });
+
+        animateElements.forEach(el => observer.observe(el));
+
+        // Back to top button
+        const backToTop = document.getElementById('back-to-top');
+        window.addEventListener('scroll', () => {
+            backToTop.classList.toggle('visible', window.scrollY > 400);
+        });
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Smooth scroll offset for fixed navbar & auto-close mobile menu
+        const bsCollapse = document.querySelector('#mynavbar');
+        const mobileMenu = bsCollapse ? new bootstrap.Collapse(bsCollapse, { toggle: false }) : null;
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                if (href === '#') return;
+                const target = document.querySelector(href);
+                if (target) {
+                    e.preventDefault();
+
+                    // Close mobile menu
+                    if (mobileMenu && bsCollapse.classList.contains('show')) {
+                        mobileMenu.hide();
+                    }
+
+                    const offset = 100;
+                    window.scrollTo({
+                        top: target.offsetTop - offset,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // ---- 3D Tilt Effect ----
+        class Tilt3D {
+            constructor(element) {
+                this.element = element;
+                this.max = parseFloat(element.getAttribute('data-tilt-max')) || 10;
+                this.speed = parseFloat(element.getAttribute('data-tilt-speed')) || 300;
+                this.scale = parseFloat(element.getAttribute('data-tilt-scale')) || 1;
+                this.isMobile = window.innerWidth < 768;
+
+                if (this.isMobile) return;
+
+                element.style.transition = `transform ${this.speed}ms ease`;
+                element.style.transformStyle = 'preserve-3d';
+                element.style.perspective = '1000px';
+
+                element.addEventListener('mouseenter', () => this.onEnter());
+                element.addEventListener('mousemove', (e) => this.onMove(e));
+                element.addEventListener('mouseleave', () => this.onLeave());
+            }
+
+            onEnter() {
+                this.element.style.transition = 'transform 0.15s ease';
+            }
+
+            onMove(e) {
+                const rect = this.element.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const rotateX = ((y - centerY) / centerY) * -this.max;
+                const rotateY = ((x - centerX) / centerX) * this.max;
+
+                this.element.style.transform =
+                    `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(${this.scale}, ${this.scale}, ${this.scale})`;
+            }
+
+            onLeave() {
+                this.element.style.transition = `transform ${this.speed}ms ease`;
+                this.element.style.transform =
+                    'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+            }
+        }
+
+        document.querySelectorAll('.tilt-card').forEach(el => new Tilt3D(el));
+
+        // ---- 3D Hero Parallax ----
+        const hero = document.querySelector('.home');
+        if (hero) {
+            const layers = hero.querySelectorAll('.parallax-layer');
+
+            hero.addEventListener('mousemove', (e) => {
+                const rect = hero.getBoundingClientRect();
+                const x = (e.clientX - rect.left) / rect.width - 0.5;
+                const y = (e.clientY - rect.top) / rect.height - 0.5;
+
+                layers.forEach(layer => {
+                    const depth = parseFloat(layer.getAttribute('data-depth')) || 0;
+                    layer.style.transform = `translate(${x * depth * 80}px, ${y * depth * 80}px)`;
+                });
+            });
+
+            hero.addEventListener('mouseleave', () => {
+                layers.forEach(layer => {
+                    layer.style.transform = 'translate(0, 0)';
+                    layer.style.transition = 'transform 0.8s ease';
+                });
+                setTimeout(() => {
+                    layers.forEach(layer => layer.style.transition = '');
+                }, 800);
+            });
+        }
+
+        // ---- Interactive Particle Network (Canvas) ----
+        const canvas = document.getElementById('particleCanvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+        let mouse = { x: null, y: null, radius: 150 };
+        let animationId;
+        let isLowPerf = false;
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+
+        function detectPerformance() {
+            const mem = navigator.deviceMemory || 8;
+            const cores = navigator.hardwareConcurrency || 8;
+            isLowPerf = mem < 4 || cores < 4 || window.innerWidth < 768;
+        }
+
+        class Particle {
+            constructor() {
+                const baseSize = isLowPerf ? 1.5 : 2.5;
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = baseSize + Math.random() * 1.5;
+                this.baseSize = this.size;
+                this.speedX = (Math.random() - 0.5) * (isLowPerf ? 0.3 : 0.6);
+                this.speedY = (Math.random() - 0.5) * (isLowPerf ? 0.3 : 0.6);
+                this.opacity = 0.3 + Math.random() * 0.4;
+                this.hue = 30 + Math.random() * 20;
+                this.pulse = Math.random() * Math.PI * 2;
+                this.pulseSpeed = 0.01 + Math.random() * 0.02;
+            }
+
+            update() {
+                this.pulse += this.pulseSpeed;
+
+                if (mouse.x !== null) {
+                    const dx = mouse.x - this.x;
+                    const dy = mouse.y - this.y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+                    if (dist < mouse.radius) {
+                        const force = (mouse.radius - dist) / mouse.radius;
+                        const angle = Math.atan2(dy, dx);
+                        this.x -= Math.cos(angle) * force * 1.2;
+                        this.y -= Math.sin(angle) * force * 1.2;
+                        this.size = this.baseSize + force * 3;
+                    } else {
+                        this.size += (this.baseSize - this.size) * 0.05;
+                    }
+                } else {
+                    this.size += (this.baseSize - this.size) * 0.05;
+                }
+
+                this.x += this.speedX;
+                this.y += this.speedY;
+
+                if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+                if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+            }
+
+            draw() {
+                const alpha = this.opacity * (0.7 + 0.3 * Math.sin(this.pulse));
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = `hsla(${this.hue}, 100%, 55%, ${alpha})`;
+                ctx.fill();
+            }
+        }
+
+        function initParticles() {
+            const count = isLowPerf ? 50 : 100;
+            particles = [];
+            for (let i = 0; i < count; i++) {
+                particles.push(new Particle());
+            }
+        }
+
+        function drawConnections() {
+            const maxDist = isLowPerf ? 100 : 120;
+
+            for (let a = 0; a < particles.length; a++) {
+                for (let b = a + 1; b < particles.length; b++) {
+                    const dx = particles[a].x - particles[b].x;
+                    const dy = particles[a].y - particles[b].y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+
+                    if (dist > maxDist) continue;
+
+                    const alpha = (1 - dist / maxDist) * 0.25;
+                    const brighter = mouse.x !== null &&
+                        Math.abs(particles[a].x - mouse.x) < mouse.radius &&
+                        Math.abs(particles[a].y - mouse.y) < mouse.radius;
+
+                    ctx.beginPath();
+                    ctx.strokeStyle = `rgba(255, 165, 0, ${brighter ? alpha * 2 : alpha})`;
+                    ctx.lineWidth = brighter ? 0.8 : 0.4;
+                    ctx.moveTo(particles[a].x, particles[a].y);
+                    ctx.lineTo(particles[b].x, particles[b].y);
+                    ctx.stroke();
+                }
+            }
+        }
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+
+            drawConnections();
+            animationId = requestAnimationFrame(animateParticles);
+        }
+
+        // Mouse tracking
+        window.addEventListener('mousemove', (e) => {
+            mouse.x = e.clientX;
+            mouse.y = e.clientY;
+        });
+        window.addEventListener('mouseleave', () => {
+            mouse.x = null;
+            mouse.y = null;
+        });
+        window.addEventListener('resize', () => {
+            resizeCanvas();
+            initParticles();
+        });
+
+        // Touch support (mobile)
+        window.addEventListener('touchmove', (e) => {
+            const touch = e.touches[0];
+            mouse.x = touch.clientX;
+            mouse.y = touch.clientY;
+        }, { passive: true });
+        window.addEventListener('touchend', () => {
+            mouse.x = null;
+            mouse.y = null;
+        });
+
+        // Start particle system
+        detectPerformance();
+        resizeCanvas();
+        initParticles();
+        animateParticles();
+
+        // ---- Ambient Cursor Glow ----
+        const glow = document.getElementById('ambientGlow');
+        let glowX = -200, glowY = -200;
+        let targetGlowX = -200, targetGlowY = -200;
+
+        document.addEventListener('mousemove', (e) => {
+            targetGlowX = e.clientX;
+            targetGlowY = e.clientY;
+        });
+
+        function animateGlow() {
+            glowX += (targetGlowX - glowX) * 0.08;
+            glowY += (targetGlowY - glowY) * 0.08;
+            glow.style.background = `radial-gradient(circle 250px at ${glowX}px ${glowY}px, rgba(255, 165, 0, 0.04), transparent 80%)`;
+            requestAnimationFrame(animateGlow);
+        }
+        animateGlow();
+
+        // ---- CSRF Token Injection ----
+        fetch('backend/handlers/csrf-token.php')
+            .then(r => r.json())
+            .then(data => {
+                document.querySelectorAll('form').forEach(form => {
+                    if (!form.querySelector('input[name="csrf_token"]')) {
+                        const input = document.createElement('input');
+                        input.type = 'hidden';
+                        input.name = 'csrf_token';
+                        input.value = data.token;
+                        form.appendChild(input);
+                    }
+                });
+            })
+            .catch(() => {});
+
+        // ---- Flash Message Display ----
+        function showFlash(type, message) {
+            const toast = document.getElementById('flashToast');
+            const msgEl = document.getElementById('flashMessage');
+            toast.className = 'flash-toast flash-' + type + ' show';
+            msgEl.textContent = message;
+            setTimeout(closeFlash, 5000);
+        }
+
+        function closeFlash() {
+            const toast = document.getElementById('flashToast');
+            toast.classList.remove('show');
+        }
+
+        // ── Packages: Scroll-Driven Scene Transitions ──
+        (function initPackagesCinema() {
+            const packages = document.getElementById('packages');
+            if (!packages) return;
+            const cards = packages.querySelectorAll('.card[data-scene]');
+            const sceneOverlay = document.getElementById('packagesSceneOverlay');
+            const waterReflection = document.getElementById('packagesWaterReflection');
+            const overlayLights = sceneOverlay ? sceneOverlay.querySelectorAll('.scene-light') : [];
+
+            // Scene color themes
+            const sceneThemes = {
+                ocean:  { colors: ['rgba(0, 100, 200, 0.06)', 'rgba(0, 180, 255, 0.05)', 'rgba(0, 150, 200, 0.04)'] },
+                forest: { colors: ['rgba(46, 204, 113, 0.05)', 'rgba(39, 174, 96, 0.04)', 'rgba(26, 188, 156, 0.03)'] },
+                mountain: { colors: ['rgba(100, 180, 255, 0.05)', 'rgba(150, 120, 80, 0.04)', 'rgba(200, 180, 160, 0.03)'] },
+                beach:  { colors: ['rgba(0, 180, 200, 0.06)', 'rgba(255, 200, 100, 0.04)', 'rgba(100, 200, 220, 0.03)'] },
+                city:   { colors: ['rgba(255, 150, 50, 0.05)', 'rgba(200, 100, 200, 0.04)', 'rgba(100, 100, 255, 0.03)'] }
+            };
+
+            let currentScene = null;
+            let targetScene = null;
+            let sceneTransitionProgress = 0;
+
+            function updateSceneColors(sceneKey) {
+                if (!sceneOverlay || !overlayLights.length) return;
+                const theme = sceneThemes[sceneKey];
+                if (!theme) return;
+                overlayLights.forEach((light, i) => {
+                    if (theme.colors[i]) {
+                        light.style.background = `radial-gradient(circle, ${theme.colors[i]}, transparent)`;
+                    }
+                });
+                // Update water reflection scene
+                if (waterReflection) {
+                    if (sceneKey === 'ocean' || sceneKey === 'beach') {
+                        waterReflection.classList.add('active');
+                        const color = sceneKey === 'ocean' ? 'rgba(0, 120, 220, 0.04)' : 'rgba(0, 180, 200, 0.04)';
+                        waterReflection.style.background = `linear-gradient(180deg, transparent 0%, ${color} 40%, rgba(0, 80, 180, 0.05) 100%)`;
+                    } else {
+                        waterReflection.classList.remove('active');
+                    }
+                }
+            }
+
+            // Track which scene is most visible
+            function getDominantScene() {
+                const viewportCenter = window.innerHeight / 2;
+                const sectionTop = packages.getBoundingClientRect().top;
+                const sectionHeight = packages.offsetHeight;
+                const sectionCenter = viewportCenter - sectionTop;
+
+                if (sectionCenter < 0 || sectionCenter > sectionHeight) return null;
+
+                let maxVisibility = 0;
+                let bestScene = null;
+
+                cards.forEach(card => {
+                    const rect = card.getBoundingClientRect();
+                    const cardCenter = rect.top + rect.height / 2;
+                    const distance = Math.abs(viewportCenter - cardCenter);
+                    const visibility = Math.max(0, 1 - distance / (window.innerHeight * 0.6));
+                    if (visibility > maxVisibility) {
+                        maxVisibility = visibility;
+                        bestScene = card.getAttribute('data-scene');
+                    }
+                });
+
+                return bestScene;
+            }
+
+            // Parallax card shadows based on scroll
+            function updateCardParallax() {
+                const sectionTop = packages.getBoundingClientRect().top;
+                const scrollOffset = -sectionTop;
+
+                cards.forEach((card, i) => {
+                    const shadow = card.querySelector('.card-parallax-shadow');
+                    if (!shadow) return;
+                    const speed = 0.03 + (i * 0.005);
+                    const yOffset = scrollOffset * speed;
+                    const rotate = scrollOffset * 0.01 * (i % 2 === 0 ? 1 : -1);
+                    shadow.style.transform = `translateY(${yOffset}px) rotate(${rotate}deg)`;
+                });
+            }
+
+            function onScroll() {
+                const newScene = getDominantScene();
+                if (newScene && newScene !== currentScene) {
+                    currentScene = newScene;
+                    updateSceneColors(newScene);
+                    if (sceneOverlay) sceneOverlay.classList.add('active');
+                }
+                updateCardParallax();
+            }
+
+            // Throttled scroll handler
+            let ticking = false;
+            window.addEventListener('scroll', () => {
+                if (!ticking) {
+                    requestAnimationFrame(() => {
+                        onScroll();
+                        ticking = false;
+                    });
+                    ticking = true;
+                }
+            }, { passive: true });
+
+            // Initial scene
+            setTimeout(() => {
+                currentScene = getDominantScene();
+                if (currentScene) {
+                    updateSceneColors(currentScene);
+                    if (sceneOverlay) sceneOverlay.classList.add('active');
+                }
+                updateCardParallax();
+            }, 200);
+
+            // ── Card hover glow position tracking ──
+            cards.forEach(card => {
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = ((e.clientX - rect.left) / rect.width) * 100;
+                    const y = ((e.clientY - rect.top) / rect.height) * 100;
+                    card.style.setProperty('--mouse-x', x + '%');
+                    card.style.setProperty('--mouse-y', y + '%');
+                });
+            });
+        })();
+
+        fetch('backend/handlers/flash.php')
+            .then(r => r.json())
+            .then(data => {
+                if (data.type && data.message) {
+                    showFlash(data.type, data.message);
+                    if (window.history && window.history.replaceState) {
+                        window.history.replaceState({}, document.title, window.location.pathname);
+                    }
+                }
+            })
+            .catch(() => {});
+
+        // ── Footer Interactivity ──
+        (function initFooter() {
+            // Live year
+            const yearEl = document.getElementById('footerYear');
+            if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+            // Stats count-up animation
+            const stats = document.querySelectorAll('.stat-number');
+            if (stats.length) {
+                const countUp = (el) => {
+                    const target = parseInt(el.getAttribute('data-count')) || 0;
+                    const duration = 2000;
+                    const step = Math.max(1, Math.floor(target / 60));
+                    let current = 0;
+                    const increment = () => {
+                        current += step;
+                        if (current >= target) {
+                            el.textContent = target.toLocaleString();
+                            return;
+                        }
+                        el.textContent = current.toLocaleString();
+                        requestAnimationFrame(increment);
+                    };
+                    increment();
+                };
+
+                const statObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            countUp(entry.target);
+                            statObserver.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.5 });
+
+                stats.forEach(el => statObserver.observe(el));
+            }
+
+            // Newsletter form
+            const newsForm = document.getElementById('newsletterForm');
+            if (newsForm) {
+                const input = newsForm.querySelector('.newsletter-input');
+                const btn = newsForm.querySelector('.newsletter-btn');
+                newsForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    if (!input.value.trim()) {
+                        input.style.borderColor = '#ff4444';
+                        input.style.boxShadow = '0 0 0 3px rgba(255,68,68,0.15)';
+                        setTimeout(() => {
+                            input.style.borderColor = '';
+                            input.style.boxShadow = '';
+                        }, 2000);
+                        return;
+                    }
+                    const origText = btn.innerHTML;
+                    btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Sending...';
+                    btn.disabled = true;
+                    setTimeout(() => {
+                        btn.innerHTML = '<i class="fa-solid fa-check"></i> Subscribed!';
+                        btn.style.background = 'linear-gradient(135deg, #2ecc71, #27ae60)';
+                        input.value = '';
+                        setTimeout(() => {
+                            btn.innerHTML = origText;
+                            btn.style.background = '';
+                            btn.disabled = false;
+                        }, 2500);
+                    }, 1200);
+                });
+                input.addEventListener('focus', () => { input.style.borderColor = ''; input.style.boxShadow = ''; });
+            }
+        })();
+    </script>
 
 </body>
 </html>
