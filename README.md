@@ -391,10 +391,11 @@ mysql -u root -p your_database_name < database/schema.sql
 
 | 🔑 Detail | 📋 Value |
 |---|---|
-| **URL** | `/backend/admin/login.php` |
-| **Default Username** | `admin` |
-| **Default Password** | `admin123` |
-| **Auto-provisioned** | ✅ On first login |
+| **🌐 Live URL** | [tourandtraveltouch.great-site.net/backend/admin/login.php](https://tourandtraveltouch.great-site.net/backend/admin/login.php) |
+| **📁 Local URL** | `/backend/admin/login.php` |
+| **👤 Default Username** | `admin` |
+| **🔑 Default Password** | `admin123` |
+| **✅ Auto-provisioned** | On first login |
 
 </div>
 
