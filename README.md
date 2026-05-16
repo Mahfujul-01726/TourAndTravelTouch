@@ -1,376 +1,263 @@
-<div align="center">
-<pre style="font-family:'Courier New',monospace;background:#1a1a2e;color:#00d2ff;padding:20px;border-radius:12px;line-height:1.3;font-size:14px;border:1px solid #00d2ff44;">
-████████╗ ██████╗ ██╗   ██╗██████╗     ███████╗██╗  ██╗██████╗ ███████╗██████╗ ██╗███████╗███╗   ██╗ ██████╗███████╗
-╚══██╔══╝██╔═══██╗██║   ██║██╔══██╗    ██╔════╝██║  ██║██╔══██╗██╔════╝██╔══██╗██║██╔════╝████╗  ██║██╔════╝██╔════╝
-   ██║   ██║   ██║██║   ██║██████╔╝    █████╗  ███████║██║  ██║█████╗  ██████╔╝██║█████╗  ██╔██╗ ██║██║     █████╗  
-   ██║   ██║   ██║██║   ██║██╔══██╗    ██╔══╝  ██╔══██║██║  ██║██╔══╝  ██╔══██╗██║██╔══╝  ██║╚██╗██║██║     ██╔══╝  
-   ██║   ╚██████╔╝╚██████╔╝██║  ██║    ███████╗██║  ██║██████╔╝███████╗██║  ██║██║███████╗██║ ╚████║╚██████╗███████╗
-   ╚═╝    ╚═════╝  ╚═════╝ ╚═╝  ╚═╝    ╚══════╝╚═╝  ╚═╝╚═════╝ ╚══════╝╚═╝  ╚═╝╚═╝╚══════╝╚═╝  ╚═══╝ ╚═════╝╚══════╝
-</pre>
+# Tour And Travel Touch
 
-<br>
+A full-stack travel booking platform that connects travelers with destinations across Bangladesh. Built with vanilla PHP and MySQL on the backend, featuring an immersive frontend with interactive animations and responsive design.
 
-<table>
-  <tr>
-    <td>
-      <a href="https://tourandtraveltouch.great-site.net">
-        <img src="https://img.shields.io/badge/🌐_Live_Site-Visit_Now-00d2ff?style=for-the-badge&labelColor=1a1a2e" alt="Live Site">
-      </a>
-    </td>
-    <td>
-      <a href="https://github.com/mahfujul-01726/TourAndTravelTouch">
-        <img src="https://img.shields.io/github/stars/mahfujul-01726/TourAndTravelTouch?style=for-the-badge&logo=github&color=ffd700&labelColor=1a1a2e" alt="Stars">
-      </a>
-    </td>
-    <td>
-      <img src="https://img.shields.io/badge/Version-2.0-ff6b6b?style=for-the-badge&labelColor=1a1a2e" alt="Version">
-    </td>
-  </tr>
-  <tr>
-    <td>
-      <img src="https://img.shields.io/badge/PHP-8%2B-777bb4?style=for-the-badge&logo=php&labelColor=1a1a2e" alt="PHP 8+">
-    </td>
-    <td>
-      <img src="https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white&labelColor=1a1a2e" alt="MySQL">
-    </td>
-    <td>
-      <img src="https://img.shields.io/badge/Bootstrap-5.0-7952B3?style=for-the-badge&logo=bootstrap&labelColor=1a1a2e" alt="Bootstrap 5">
-    </td>
-  </tr>
-  <tr>
-    <td>
-      <img src="https://img.shields.io/badge/License-MIT-6c5ce7?style=for-the-badge&labelColor=1a1a2e" alt="MIT">
-    </td>
-    <td>
-      <img src="https://img.shields.io/badge/CI-GitHub_Actions-2088FF?style=for-the-badge&logo=github-actions&labelColor=1a1a2e" alt="CI">
-    </td>
-    <td>
-      <img src="https://img.shields.io/badge/UI-3D_Particles_✨-ff6b6b?style=for-the-badge&labelColor=1a1a2e" alt="3D UI">
-    </td>
-  </tr>
-</table>
-
-<br>
-
-<h3><em>Discover the untold beauty of Bangladesh — one journey at a time.</em></h3>
-
-<br>
-</div>
+[![Live Site](https://img.shields.io/badge/Live_Site-tourandtraveltouch.great--site.net-00d2ff?style=flat-square)](https://tourandtraveltouch.great-site.net)
+[![GitHub Stars](https://img.shields.io/github/stars/mahfujul-01726/TourAndTravelTouch?style=flat-square)](https://github.com/mahfujul-01726/TourAndTravelTouch)
+[![Version](https://img.shields.io/badge/Version-2.0-ff6b6b?style=flat-square)]()
+[![PHP](https://img.shields.io/badge/PHP-8%2B-777bb4?style=flat-square&logo=php)]()
+[![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=flat-square&logo=mysql)]()
+[![Bootstrap](https://img.shields.io/badge/Bootstrap-5-7952B3?style=flat-square&logo=bootstrap)]()
+[![License](https://img.shields.io/badge/License-MIT-6c5ce7?style=flat-square)]()
 
 ---
 
-## 📋 Table of Contents
+## Table of Contents
 
-- [Mission](#-mission)
-- [Destinations](#-destinations)
-- [Features](#-features)
-- [Tech Stack](#-tech-stack)
-- [Architecture](#-architecture)
-- [Quick Start](#-quick-start)
-- [API Reference](#-api-reference)
-- [Database](#-database)
-- [Security](#-security)
-- [Themes](#-themes)
-- [Deployment](#-deployment)
-- [Contributing](#-contributing)
-- [License](#-license)
+- [Overview](#overview)
+- [Destinations](#destinations)
+- [Features](#features)
+- [Tech Stack](#tech-stack)
+- [Architecture](#architecture)
+- [Getting Started](#getting-started)
+- [Admin Panel](#admin-panel)
+- [Security](#security)
+- [Contributing](#contributing)
+- [License](#license)
 
 ---
 
-## 🎯 Mission
+## Overview
 
-**Tour And Travel Touch** bridges travelers with Bangladesh's most extraordinary destinations. Built as a full-stack booking platform with a **vanilla PHP + MySQL** backend and an **immersive, animated frontend**, it turns trip planning into an experience — not just a transaction.
+Tour And Travel Touch is a travel booking platform featuring six hand-picked destinations across Bangladesh. The platform provides a complete booking workflow — users can browse destinations, register accounts, submit bookings, and manage their travel plans. An admin dashboard enables monitoring and management of bookings and users.
 
-From the world's largest mangrove forest to the pristine beaches of the Bay of Bengal, every corner of this platform is crafted to inspire wanderlust.
-
----
-
-## 🏝️ Destinations
-
-Six hand-picked experiences across Bangladesh, each with its own story:
-
-| Destination | Snapshot | Experience | Rating | Starting From |
-|:-----------:|:--------:|:-----------|:------:|:-------------:|
-| **Sundarbans**<br><sub>UNESCO World Heritage</sub> | `🌿 Forest` | The world's largest mangrove forest, home to the majestic Royal Bengal Tiger and a breathtaking ecosystem of estuaries and wildlife. | ⭐ **5.0** | **5,000 ৳** |
-| **Srimangal**<br><sub>Tea Capital</sub> | `🍃 Tea Garden` | Rolling emerald hills draped in endless tea estates. Walk through Lawachara Rainforest and taste the famous 7-layer tea. | ⭐ **4.0** | **5,500 ৳** |
-| **Rangamati**<br><sub>Lake District</sub> | `🌊 Lake View` | Serene hill district with the magnificent Kaptai Lake. Cross the iconic Hanging Bridge over turquoise waters. | ⭐ **4.0** | **7,700 ৳** |
-| **Bandarbans**<br><sub>Hill Tracts</sub> | `⛰️ Hill Track` | One of Bangladesh's three hill districts, offering breathtaking mountain panoramas, indigenous culture, and the highest peak — Tajingdong. | ⭐ **4.0** | **6,000 ৳** |
-| **Saint Martin**<br><sub>Island Paradise</sub> | `🏖️ Beach` | A tropical gem in the Bay of Bengal with crystal-clear waters, coral reefs, and the most spectacular sunsets in the country. | ⭐ **4.0** | **8,000 ৳** |
-| **Shait-Gumbad Mosque**<br><sub>Historic Heritage</sub> | `🏛️ Heritage` | The magnificent Sixty Dome Mosque, a UNESCO tentative site and architectural masterpiece from the Bengal Sultanate era. | ⭐ **3.0** | **1,500 ৳** |
-
-> *All prices in Bangladeshi Taka (BDT). Packages include guided tours and standard accommodations.*
+The project serves as a demonstration of full-stack development with vanilla PHP, featuring prepared-statement SQL queries, CSRF protection, bcrypt password hashing, session-based authentication, and a responsive frontend with interactive visual effects.
 
 ---
 
-## ✨ Features
+## Destinations
 
-### 🎨 <b>Next-Gen Frontend</b>
-<table>
-<tr>
-<td width="50%">
+| Destination | Region | Type | Starting From |
+|---|---|---|---|
+| **Sundarbans** | Khulna | Mangrove Forest / UNESCO World Heritage | 5,000 ৳ |
+| **Srimangal** | Sylhet | Tea Garden / Rainforest | 5,500 ৳ |
+| **Rangamati** | Chittagong Hill Tracts | Lake District / Hill Station | 7,700 ৳ |
+| **Bandarbans** | Chittagong Hill Tracts | Hill Tracks / Trekking | 6,000 ৳ |
+| **Saint Martin** | Bay of Bengal | Coral Island / Beach | 8,000 ৳ |
+| **Shait-Gumbad Mosque** | Bagerhat | Historic Mosque / UNESCO Tentative | 1,500 ৳ |
 
-**Visual Experience**
-- 3D tilt-effect cards with parallax shadows
-- Interactive particle canvas system
-- Animated background slideshow with cross-fade transitions
-- Floating clouds, birds, and water reflection shaders
-- Ambient cursor glow & light ray effects
-- Scroll-triggered reveal animations
-- Floating travel icons (planes, mountains, compasses)
-
-</td>
-<td width="50%">
-
-**UX & Responsiveness**
-- Bootstrap 5 fully responsive grid
-- Glassmorphism navbar with backdrop blur
-- Back-to-top button with smooth scroll
-- Toast notification system for feedback
-- Dual theme switcher (2 color schemes)
-- Lazy-loaded images for performance
-- 60fps CSS animations throughout
-
-</td>
-</tr>
-</table>
-
-### ⚙️ <b>Full-Stack Capabilities</b>
-
-| Feature | Implementation | Highlights |
-|---------|:-------------:|:----------:|
-| **Booking Engine** | PHP + MySQL via `mysqli` | Prepared statements, date validation, traveler count limits |
-| **Instant Search** | PHP search handler | Masked input fields, SQL-injection safe, real-time results |
-| **User Registration** | PHP auth handler | Bcrypt hashing (cost 12), email uniqueness, CSRF-guarded |
-| **CSRF Protection** | 32-byte random tokens | Server-generated, JavaScript-fetched, validated on every POST |
-| **Flash Messaging** | Session-based system | JSON endpoints for success/error toasts with auto-dismiss |
-| **Dual Themes** | CSS variable swapping | Orange/Black (default) ↔ Red/Green — instant switch |
-
-### 🛡️ <b>Security Posture</b>
-
-```
-┌──────────────────────────────────────────────────────────────────┐
-│                        SECURITY ARCHITECTURE                      │
-├───────────────┬────────────────────┬─────────────────────────────┤
-│    LAYER      │    MECHANISM       │      DETAILS                 │
-├───────────────┼────────────────────┼─────────────────────────────┤
-│  Request      │  CSRF Validation   │  32-byte token per session   │
-│  Input        │  Sanitization      │  Type checks, length limits  │
-│  Query        │  Prepared Stmts    │  Zero SQL injection vector   │
-│  Output       │  htmlspecialchars  │  XSS prevention on all data  │
-│  Password     │  Bcrypt cost=12    │  ~250ms hash, future-proof   │
-│  Error        │  Generic messages  │  No internal info leakage    │
-│  Session      │  HTTP-only cookies │  Secure, SameSite=Lax        │
-└───────────────┴────────────────────┴─────────────────────────────┘
-```
+*Prices in Bangladeshi Taka (BDT). Packages include guided tours and standard accommodations.*
 
 ---
 
-## 🛠️ Tech Stack
+## Features
 
-<div align="center">
+### Frontend
+
+- **3D Tilt-Effect Cards** — Destinations, services, and gallery images respond to mouse hover with CSS 3D transforms
+- **Interactive Particle Canvas** — Animated particle network with mouse interaction and ambient glow
+- **Background Slideshow** — Cross-fading background transitions in hero and packages sections
+- **Parallax Hero** — Mouse-driven depth movement across layered elements
+- **Scroll Animations** — Intersection Observer-based fade-in and reveal effects
+- **Dynamic Theme Switching** — Toggle between two color schemes (Orange/Black and Red/Green) via CSS custom properties
+- **Cinematic Scene Transitions** — Overlay colors shift based on the destination card in view
+- **Glassmorphism UI** — Backdrop blur elements throughout the interface
+- **Toast Notifications** — Session-driven flash messages with auto-dismiss
+- **Responsive Design** — Bootstrap 5 grid supporting mobile through desktop viewports
+
+### Backend
+
+- **User Registration & Authentication** — Email-based registration with bcrypt password hashing (cost 12), login, and logout
+- **Booking Engine** — Authenticated users can submit, view, and search bookings with date validation
+- **CSRF Protection** — 32-byte random tokens generated per session, validated on all POST requests
+- **Search Functionality** — Booking lookup by destination name or customer details
+- **Flash Messaging** — Session-based success and error messages consumed via JSON endpoint
+
+### Admin
+
+- Password-protected dashboard at `/backend/admin/login.php`
+- Statistics overview (total bookings, registered users)
+- Booking management table with destination, traveler count, dates, and customer details
+- User management table with registration timestamps
+
+---
+
+## Tech Stack
 
 | Layer | Technology | Purpose |
-|:------|:-----------|:--------|
-| <img src="https://img.shields.io/badge/-HTML5-E34F26?logo=html5&logoColor=white" valign="middle"> | **HTML5** | Semantic document structure & SEO |
-| <img src="https://img.shields.io/badge/-CSS3-1572B6?logo=css3&logoColor=white" valign="middle"> | **CSS3** | Custom properties, animations, glassmorphism |
-| <img src="https://img.shields.io/badge/-Bootstrap-7952B3?logo=bootstrap&logoColor=white" valign="middle"> | **Bootstrap 5.0.2** | Responsive layout, grid, utilities |
-| <img src="https://img.shields.io/badge/-Font_Awesome-528DD7?logo=fontawesome&logoColor=white" valign="middle"> | **Font Awesome 6.2.1** | Vector icons & travel-related iconography |
-| <img src="https://img.shields.io/badge/-Google_Fonts-4285F4?logo=google&logoColor=white" valign="middle"> | **Poppins / Inter** | Modern, highly-readable typefaces |
-| <img src="https://img.shields.io/badge/-Vanilla_JS-F7DF1E?logo=javascript&logoColor=black" valign="middle"> | **JavaScript (ES6+)** | 3D tilt, particles, animations, DOM interactions |
-| <img src="https://img.shields.io/badge/-PHP-777BB4?logo=php&logoColor=white" valign="middle"> | **PHP 8+** | Request handling, validation, session management |
-| <img src="https://img.shields.io/badge/-MySQL-4479A1?logo=mysql&logoColor=white" valign="middle"> | **MySQL / MariaDB** | Persistent data storage with relational schema |
-| <img src="https://img.shields.io/badge/-GitHub_Actions-2088FF?logo=githubactions&logoColor=white" valign="middle"> | **GitHub Actions** | CI/CD — auto-deploy to GitHub Pages |
-
-</div>
+|---|---|---|
+| Frontend | HTML5, CSS3, JavaScript (ES6+) | Structure, styling, interactivity |
+| CSS Framework | Bootstrap 5.0.2 | Responsive layout and grid system |
+| Icons | Font Awesome 6.2.1 | Travel-related iconography |
+| Typography | Google Fonts (Poppins, Inter) | Modern typefaces |
+| Backend | PHP 8+ (vanilla) | Request handling, validation, session management |
+| Database | MySQL / MariaDB via `mysqli` | Persistent storage with relational schema |
+| CI/CD | GitHub Actions | FTP-based deployment to hosting |
+| Hosting | InfinityFree | PHP and MySQL hosting |
 
 ---
 
-## 📁 Architecture
+## Architecture
 
 ```
-┌────────────────────────────────────────────────────────────────────────────┐
-│                           TOUR AND TRAVEL TOUCH                            │
-├────────────────────────────────────────────────────────────────────────────┤
-│                                                                            │
-│  ┌──────────────────────────────────────────────────────────────────┐     │
-│  │                         FRONTEND (index.html)                    │     │
-│  │  ┌──────────┐ ┌──────────┐ ┌──────────┐ ┌──────────┐           │     │
-│  │  │  Hero    │ │Destination│ │ Services │ │ Gallery  │  ...      │     │
-│  │  │ Section  │ │  Cards   │ │  Grid    │ │  Grid    │           │     │
-│  │  └──────────┘ └──────────┘ └──────────┘ └──────────┘           │     │
-│  │  ┌──────────────────────────────────────────────────────────┐   │     │
-│  │  │  JS: 3D Tilt · Particles · Parallax · Scroll Reveal      │   │     │
-│  │  │  CSS: Glassmorphism · Animations · Float Effects         │   │     │
-│  │  └──────────────────────────────────────────────────────────┘   │     │
-│  └──────────────────────────────────────────────────────────────────┘     │
-│                                  │ HTTP POST/GET                           │
-│                                  ▼                                         │
-│  ┌──────────────────────────────────────────────────────────────────┐     │
-│  │                       PHP BACKEND                                │     │
-│  │  ┌──────────────┐ ┌──────────────┐ ┌──────────────┐            │     │
-│  │  │  Booking     │ │  Search      │ │  Register    │  ...       │     │
-│  │  │  Handler     │ │  Handler     │ │  Handler     │            │     │
-│  │  └──────┬───────┘ └──────┬───────┘ └──────┬───────┘            │     │
-│  │         │                │                │                    │     │
-│  │         └────────────────┼────────────────┘                    │     │
-│  │                          ▼                                     │     │
-│  │              ┌──────────────────────┐                          │     │
-│  │              │   database.php       │                          │     │
-│  │              │   (mysqli, env vars) │                          │     │
-│  │              └──────────┬───────────┘                          │     │
-│  └─────────────────────────┼──────────────────────────────────────┘     │
-│                            ▼                                            │
-│  ┌──────────────────────────────────────────────────────────────────┐  │
-│  │                    DATABASE (MySQL / MariaDB)                    │  │
-│  │  ┌─────────────────────────┐   ┌──────────────────────────────┐ │  │
-│  │  │  information            │   │  users                       │ │  │
-│  │  │  (booking records)      │   │  (user accounts)             │ │  │
-│  │  └─────────────────────────┘   └──────────────────────────────┘ │  │
-│  └──────────────────────────────────────────────────────────────────┘  │
-│                                                                            │
-└────────────────────────────────────────────────────────────────────────────┘
+┌─────────────────────────────────────────────────────────────┐
+│                     FRONTEND (index.html)                    │
+│  Hero Section | Destination Cards | Services | Gallery      │
+│  JS: 3D Tilt · Particles · Parallax · Scroll Animations    │
+│  CSS: Glassmorphism · CSS Variables · Responsive Grid       │
+└───────────────────────┬─────────────────────────────────────┘
+                        │ HTTP POST/GET
+                        ▼
+┌─────────────────────────────────────────────────────────────┐
+│                     PHP BACKEND                              │
+│  handlers/booking.php     handlers/login.php                │
+│  handlers/register.php    handlers/search.php               │
+│  handlers/auth-status.php handlers/csrf-token.php           │
+│  handlers/flash.php       handlers/logout.php               │
+│                        │                                    │
+│              backend/config/database.php                     │
+│              (mysqli, prepared statements)                   │
+└──────────────────────────┬──────────────────────────────────┘
+                           ▼
+┌─────────────────────────────────────────────────────────────┐
+│              DATABASE (MySQL / MariaDB)                      │
+│  information (bookings)  ·  users (accounts)                │
+│  admins (admin accounts)                                    │
+└─────────────────────────────────────────────────────────────┘
+```
+
+### Project Structure
+
+```
+├── index.html                    # Main single-page frontend
+├── pages/                        # Authentication pages
+│   ├── login.html
+│   └── signup.html
+├── backend/
+│   ├── config/
+│   │   ├── app.php               # CORS, session, URL configuration
+│   │   └── database.php          # Database connection
+│   ├── helpers.php               # Shared utilities (CSRF, flash, auth)
+│   ├── handlers/                 # Request processors
+│   └── admin/                    # Admin panel
+├── assets/
+│   ├── css/
+│   │   ├── theme-orange.css      # Primary theme
+│   │   └── theme-red.css         # Alternate theme
+│   ├── js/
+│   │   └── config.js             # Frontend backend URL config
+│   └── images/                   # UI assets and destination photos
+├── database/
+│   └── schema.sql                # MySQL schema
+└── .github/workflows/
+    └── deploy.yml                # GitHub Actions CI/CD
 ```
 
 ---
 
-## 🚀 Quick Start
+## Getting Started
 
-Everything runs on **InfinityFree** — one domain, no cross-origin issues.
+### Prerequisites
 
-### Step 1: Create InfinityFree Account
+- PHP 8.0 or higher
+- MySQL 5.7+ or MariaDB
+- A web server (Apache, Nginx) or local development environment (XAMPP, WAMP, Laragon)
 
-1. Go to **[infinityfree.com](https://infinityfree.com)** → **Sign Up**
-2. Confirm your email → Log in to the control panel
+### Local Setup
 
-### Step 2: Create Database
+1. **Clone the repository**
 
-1. Go to **MySQL Databases** → **Create Database**
-2. Copy the credentials (they look like this):
+   ```bash
+   git clone https://github.com/mahfujul-01726/TourAndTravelTouch.git
    ```
-   Hostname: sqlXXX.infinityfree.com
-   Database: if0_XXXXX_databasename
-   Username: if0_XXXXX
-   Password: (shown once — save it)
+
+2. **Set up the database**
+
+   Create a MySQL database and import the schema:
+
+   ```bash
+   mysql -u root -p your_database_name < database/schema.sql
    ```
 
-### Step 3: Import Schema
+3. **Configure database connection**
 
-1. Open **phpMyAdmin** → select your database
-2. Click **Import** → choose `database/schema.sql` → **Go**
+   Edit `backend/config/database.php` with your local database credentials.
 
-### Step 4: Configure
+4. **Configure application URLs**
 
-Open **`backend/config/database.php`** and paste your credentials:
+   - `backend/config/app.php` — Set `FRONTEND_URL` to your local server address
+   - `assets/js/config.js` — Set `BACKEND_URL` to match
 
-```php
-define('DB_HOST', 'sql305.infinityfree.com');
-define('DB_NAME', 'if0_41936508_firstsql');
-define('DB_USER', 'if0_41936508');
-define('DB_PASS', '3a4jNkVeAq');
-```
+5. **Serve the application**
 
-> If you re-import the schema, also run this SQL in phpMyAdmin to create the admin table:
-> ```sql
-> CREATE TABLE IF NOT EXISTS admins (
->     id INT AUTO_INCREMENT PRIMARY KEY,
->     username VARCHAR(100) NOT NULL UNIQUE,
->     password_hash VARCHAR(255) NOT NULL,
->     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-> ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-> ```
+   Place the project in your web server's document root and access `index.html` through your browser.
 
-### Step 5: Upload Everything
+### Production Deployment (InfinityFree)
 
-1. File Manager → go into `htdocs/` → delete default files
-2. **Upload the entire project** — all files and folders
-3. Wait for upload to complete
-
-### Step 6: Launch 🎉
-
-Visit your InfinityFree domain — everything works on one domain:
-
-```
-https://tourandtraveltouch.great-site.net
-```
+1. Create an account at [infinityfree.com](https://infinityfree.com)
+2. Create a MySQL database through the control panel
+3. Import `database/schema.sql` via phpMyAdmin
+4. Update `backend/config/database.php` with InfinityFree database credentials
+5. Upload all files to the `htdocs/` directory via FTP or File Manager
+6. Access your InfinityFree domain to verify deployment
 
 ---
 
-### 📁 Live URLs
+## Admin Panel
 
-| Resource | URL |
-|----------|-----|
-| **Website** | [tourandtraveltouch.great-site.net](https://tourandtraveltouch.great-site.net) |
-| **Admin Panel** | [tourandtraveltouch.great-site.net/backend/admin/login.php](https://tourandtraveltouch.great-site.net/backend/admin/login.php) |
-| **GitHub Mirror** | [mahfujul-01726.github.io/TourAndTravelTouch](https://mahfujul-01726.github.io/TourAndTravelTouch) |
+An administrative interface is available for managing bookings and users.
+
+| Detail | Value |
+|---|---|
+| URL | `/backend/admin/login.php` |
+| Default Username | `admin` |
+| Default Password | `admin123` |
+
+*The admin account is created automatically on first login. Change the default password after initial access.*
 
 ---
 
-## 🔐 Admin Panel
+## Security
 
-Manage bookings and users from a password-protected dashboard.
+| Layer | Mechanism |
+|---|---|
+| SQL Injection | Prepared statements with parameterized queries |
+| Cross-Site Scripting (XSS) | `htmlspecialchars()` on all output |
+| Password Storage | bcrypt hashing with cost factor 12 |
+| Cross-Site Request Forgery | 32-byte random tokens validated on every POST |
+| Session Cookies | HTTP-only, Secure, SameSite=Lax attributes |
+| Error Handling | Generic error messages to prevent information leakage |
 
-| | |
-|--|--|
-| **URL** | [`/backend/admin/login.php`](https://tourandtraveltouch.great-site.net/backend/admin/login.php) |
-| **Username** | `admin` |
-| **Password** | `admin123` |
+---
 
-> First visit auto-creates the admin account. Change the password after logging in.
+## Contributing
 
-**Dashboard features:**
-- Stats cards — total bookings & registered users
-- Bookings table — destination, travelers, dates, customer details
-- Users table — full name, email, registration date
+Contributions are welcome. Please follow these guidelines:
 
-Contributions are what make the open-source community an incredible place to learn and grow.
-
-<details>
-<summary><b>📖 Contribution Guide</b></summary>
-<br>
-
-1. **Fork** the repository
-2. **Create** a feature branch: `git checkout -b feature/amazing-feature`
-3. **Commit** your changes: `git commit -m 'feat: add amazing feature'`
-4. **Push** to the branch: `git push origin feature/amazing-feature`
-5. **Open** a Pull Request
+1. Fork the repository
+2. Create a feature branch: `git checkout -b feature/your-feature`
+3. Commit your changes with clear messages
+4. Push to your branch: `git push origin feature/your-feature`
+5. Open a Pull Request
 
 **Guidelines:**
-- Follow existing code style (vanilla PHP, no frameworks)
-- Use prepared statements for any new SQL queries
-- Add CSRF protection to any new form handlers
+- Maintain the existing vanilla PHP architecture (no frameworks)
+- Use prepared statements for all SQL queries
+- Include CSRF protection for any new form handlers
 - Test with PHP 8.0+ and MySQL 5.7+
-
-</details>
 
 ---
 
-## 📄 License
+## License
 
-This project is provided for **educational and portfolio purposes**. Feel free to draw inspiration, study the architecture, and adapt the code for your own learning.
+This project is provided for educational and portfolio purposes. See the [LICENSE](LICENSE) file for details.
 
 ---
 
 <div align="center">
+  <p><strong>Author:</strong> <a href="https://github.com/mahfujul-01726">Mahfujul Karim</a></p>
+  <p><strong>Live Demo:</strong> <a href="https://tourandtraveltouch.great-site.net">tourandtraveltouch.great-site.net</a></p>
+  <p><strong>Repository:</strong> <a href="https://github.com/mahfujul-01726/TourAndTravelTouch">github.com/mahfujul-01726/TourAndTravelTouch</a></p>
   <br>
-  <img src="assets/logo.png" alt="Tour And Travel Touch" width="64" />
-  <br><br>
-  <table>
-    <tr>
-      <td align="center">
-        <sub><strong>Author</strong></sub><br>
-        <a href="https://github.com/mahfujul-01726">Mahfujul Karim</a>
-      </td>
-      <td align="center">
-        <sub><strong>Live Demo</strong></sub><br>
-        <a href="https://mahfujul-01726.github.io/TourAndTravelTouch">tourandtraveltouch.com</a>
-      </td>
-      <td align="center">
-        <sub><strong>Repository</strong></sub><br>
-        <a href="https://github.com/mahfujul-01726/TourAndTravelTouch">github.com/mahfujul-01726/TourAndTravelTouch</a>
-      </td>
-    </tr>
-  </table>
-  <br>
-  <sub>Built with ❤️ using vanilla PHP, MySQL, and a lot of CSS magic.</sub>
-  <br><br>
+  <sub>Built with PHP, MySQL, and vanilla JavaScript.</sub>
 </div>
