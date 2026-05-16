@@ -456,6 +456,29 @@ The frontend can be deployed to GitHub Pages via the included workflow:
 
 Go to repository **Settings → Pages → Source: GitHub Actions** and push to `main`.
 
+## 🔐 Admin Panel
+
+Manage your bookings and users through a password-protected dashboard.
+
+| Feature | URL |
+|---------|-----|
+| **Login** | `https://tourandtraveltouch.great-site.net/backend/admin/login.php` |
+| **Dashboard** | (auto-redirects after login) |
+
+**Default credentials:**
+```
+Username: admin
+Password: admin123
+```
+
+> ⚡ **First visit** creates the admin table and default account automatically.  
+> ⚡ **Change the password** after first login for security.
+
+The admin panel shows:
+- **Stats cards** — total bookings, users, this month's activity
+- **Bookings table** — destination, travelers, dates, customer details
+- **Users table** — full name, email, registration date
+
 ---
 
 ## 🤝 Contributing
