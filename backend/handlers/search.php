@@ -11,10 +11,6 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST' || empty($_POST['search'])) {
     redirect('/index.html');
 }
 
-if (!validateCsrfToken($_POST['csrf_token'] ?? '')) {
-    redirectWithFlash('/index.html', 'error', 'Invalid form submission. Please try again.');
-}
-
 $searchTerm = trim($_POST['search']);
 $results = [];
 
