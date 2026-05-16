@@ -7,45 +7,45 @@
     scroll-behavior: smooth;
     font-family: 'Lato', sans-serif;
 }
-
 /* Navbar Start */
-#navbar{
-    background: #f9f9f9;
+#navbar {
+    background: #ffcccc; /* Red background color */
 }
-#logo{
+#logo {
     font-size: 36px;
     font-weight: 550;
-    color: black;
+    color:green ; /* Red text color */
     text-shadow: 0px 1px 1px black;
     margin-bottom: 5px;
 }
-#logo span{
-    color: #ffa500;
+#logo span {
+    color:blue
 }
-.navbar-toggler span{
-    color: #ffa500;
+.navbar-toggler span {
+    color: white; 
 }
-.navbar-nav{
+.navbar-nav {
     margin-left: 20px;
 }
-.nav-item .nav-link{
+.nav-item .nav-link {
     font-size: 16px;
     font-weight: 550;
-    color: black;
+    color: rgb(64, 128, 0); /* Green text color */
     letter-spacing: 1px;
     border-radius: 3px;
     transition: 0.5s ease;
 }
-.nav-item .nav-link:hover{
-    background: #ffa500;
+.nav-item .nav-link:hover {
+    background: #ff5500; 
     color: white;
 }
-#navbar form button{
-    background: orange;
+#navbar form button {
+    background:black; /* search button*/
     color: white;
     border: none;
 }
 /* Navbar End */
+
 
 /* Home Section Start */
 .home{
@@ -60,13 +60,13 @@
     padding-top: 200px;
 }
 .home .content h5{
-    color: white;
+    color: red; /* Change text color to red */
     font-size: 38px;
     font-weight: 550;
     text-shadow: 0px 1px 1px black;
 }
 .home .content h1{
-    color: white;
+    color: rgb(255, 238, 0); /* Change text color to red */
     font-size: 70px;
     font-weight: 550;
     text-shadow: 0px 1px 1px black;
@@ -74,7 +74,7 @@
 }
 .changecontent::after{
     content: ' ';
-    color: #ffa500;
+    color:#ff0080;
     text-shadow: 0px 1px 1px black;
     animation: changetext 10s infinite linear;
 }
@@ -92,7 +92,7 @@
     100%{content: "Jaflong";}
 } 
 .home .content p{
-    color: white;
+    color: red; /* Change text color to red */
     font-size: 15px;
     font-weight: 600;
     text-shadow: 0px 1px 1px black;
@@ -102,7 +102,7 @@
 .home .content a{
     padding: 10px;
     background: white;
-    color: black;
+    color: rgb(128, 115, 0); /* Change link color to red */
     letter-spacing: 2px;
     font-weight: 550;
     border-radius: 5px;
@@ -110,7 +110,7 @@
     transition: 0.5s;
 }
 .home .content a:hover{
-    background: #ffa500;
+    background: #ff006f;
     color: white;
 }
 @media (max-width:850px){
@@ -131,29 +131,30 @@
 }
 /* Home Section End */
 
+
 /* Section Book Start */
 .book{
-    background: #f9f9f9;
+    background: white;
     padding: 50px;
 }
 .main-text h1{
     text-align: center;
-    text-shadow: 0px 1px 1px black;
+    text-shadow: 0px 1px 1px rgb(255, 0, 0);
     font-weight: 600;
 }
 .main-text h1 span{
-    color: #ffa500;
+    color: rgb(255, 98, 0); /* Change text color to orange */
 }
 .book .card{
     border-radius: 10px;
-    box-shadow: 0px 5px 5px -6px black;
+    box-shadow: 0px 5px 5px -6px rgb(0, 0, 0);
 }
 .book .row{
     margin-top: 30px;
 }
 .book form input{
     padding: 10px;
-    color: black;
+    color: #8b8900; /* Change input text color to green */
     border: none;
     outline: none;
     font-size: 15px;
@@ -164,15 +165,15 @@
     border: none;
     border-radius: 10px;
     resize: none;
-    box-shadow: 0px 5px 5px -6px black;
+    box-shadow: 0px 5px 5px -6px white;
     height: 200px;
 }
 .book .submit{
     width: 160px;
     font-size: 16px;
     font-weight: 550;
-    background: #ffa500;
-    color: white;
+    background: rgb(227, 225, 225);
+    color: red;
     margin-top: 10px;
     transition: 0.5s;
 }
@@ -190,9 +191,6 @@
 /* Section Book End */
 
 
-
-
-
 /* Section Packages Start */
 .main-txt h1{
     text-align: center;
@@ -200,8 +198,13 @@
     font-weight: 600;
     text-shadow: 0px 1px 1px black;
 }
+
+
 .main-txt h1 span{
-    color: #ffa500;
+    color: green;
+}
+.main-txt h1{
+    color:rgb(128, 255, 0);
 }
 .packages .card{
     border-radius: 5px;
@@ -221,8 +224,9 @@
 .packages .card .card-body p{
     font-size: 15px;
 }
+
 .checked{
-    color: #ffa500;
+    color: purple; /* star */
 }
 .star i{
     font-size: 15px;
@@ -233,8 +237,8 @@
 .packages .card .card-body a{
     padding: 10px;
     text-decoration: none;
-    background: #ffa500;
-    color: white;
+    background: rgb(237, 226, 232);
+    color: rgb(230, 216, 15);
     border-radius: 5px;
 }
 /* Section Packages End */
@@ -255,7 +259,7 @@
 .services .card i{
     font-size: 80px;
     text-align: center;
-    color: #ffa500;
+    color: #0cf4e8;
     margin-top: 20px;
 }
 .services .card .card-body h3{
@@ -315,8 +319,8 @@
     height: 38px;
     border: none;
     border-radius: 5px;
-    background: #ffa500;
-    color: white;
+    background: rgb(234, 226, 226);
+    color: rgb(255, 196, 0);
     letter-spacing: 2px;
     font-weight: 550;
     transition: 0.5s ease;
@@ -348,13 +352,13 @@
     text-shadow: 0px 0px 1px black;
 }
 #footer h1 span{
-    color: #ffa500;
+    color: #FF6347;
 }
 .social-links i{
     padding: 10px;
     border-radius: 5px;
     font-size: 20px;
-    background: black;
+    background: rgb(0, 255, 153) ;
     color: white;
     margin-left: 10px;
     margin-bottom: 10px;
@@ -362,6 +366,6 @@
     cursor: pointer;
 }
 .social-links i:hover{
-    background: #ffa500;
+    background: #ffcccc;
 }
 /* Footer End */

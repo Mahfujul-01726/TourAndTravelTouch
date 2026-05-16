@@ -1,0 +1,31 @@
+# GitHub Pages Configuration for Tour And Travel Touch
+
+# This file ensures GitHub Pages deploys correctly
+# The website is served from the root of the main branch
+
+# For more information about GitHub Pages configuration, see:
+# https://docs.github.com/en/pages/getting-started-with-github-pages/about-github-pages
+
+# Theme (optional - we're using custom CSS)
+# theme: null
+
+# BaseURL for subdirectory deployments (leave blank if deploying to main domain)
+# baseurl: "/TourAndTravelTouch"
+
+# Site settings
+title: Tour And Travel Touch
+description: Explore the hidden gems of Bangladesh with professional travel packages
+url: "https://mahfujul-01726.github.io/TourAndTravelTouch"
+
+# Markdown processor
+markdown: kramdown
+
+# Exclude these files from build
+exclude:
+  - README.md
+  - .gitignore
+  - .github
+  - node_modules
+  - Gemfile
+  - Gemfile.lock
+  - SOFTWARE Development1.zip

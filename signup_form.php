@@ -18,7 +18,7 @@ include 'functions.php';
 		//Query to register new user
 		$insertQuery  = "INSERT INTO information(whereto,howmany,arrival,leaving,textdata) VALUES (?,?,?,?,?)";
 		if($stmt = $con->prepare($insertQuery)){
-			$stmt->bind_param("sssss",$howmany,$howmany,$arrival,$leaving,$text);
+			$stmt->bind_param("sssss",$whereto,$howmany,$arrival,$leaving,$text);
 			$stmt->execute();
 			$response["status"] = 0;
 			$response["message"] = "User created";
