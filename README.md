@@ -1,5 +1,7 @@
 <div align="center">
   <br>
+  <img src="assets/images/ui/logo.png" alt="Tour And Travel Touch Logo" width="120" style="border-radius: 12px;">
+  <br><br>
   <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=28&duration=3000&pause=1000&color=00D2FF&center=true&vCenter=true&width=500&lines=Tour+And+Travel+Touch;Explore+Bangladesh;Book+Your+Journey" alt="Typing SVG" />
   <br><br>
   
@@ -106,20 +108,37 @@ This isn't another Laravel clone or a WordPress travel theme. **Tour And Travel 
 - 🚀 **CI/CD automation** — GitHub Actions pushing to production on every commit
 
 <details>
-<summary>📸 <strong>Click to see screenshots</strong></summary>
+<summary>📸 <strong>Click to see project previews</strong></summary>
 <br>
 
-> *Screenshots coming soon! The live demo is available at the link above.*
->
-> In the meantime, here's what you'll find:
->
-> | Section | Highlights |
-> |---|---|
-> | **Hero** | Parallax depth layers, animated title typing effect |
-> | **Destinations** | 3D tilt cards with glassmorphism, per-card scene transitions |
-> | **Services** | Interactive icon cards with scroll-reveal animations |
-> | **Gallery** | Hover-zoom grid with particle network overlay |
-> | **Auth** | Clean login/signup forms with server-side validation |
+<div align="center">
+  <table>
+    <tr>
+      <td width="50%" align="center">
+        <strong>🏠 Landing Page</strong><br>
+        <img src="assets/images/ui/background img.png" alt="Landing page hero section" width="100%" style="border-radius: 8px;">
+        <br><sub>Parallax hero with glassmorphism nav and 3D destination cards</sub>
+      </td>
+      <td width="50%" align="center">
+        <strong>📖 About Section</strong><br>
+        <img src="assets/images/ui/about-img.png" alt="About section" width="100%" style="border-radius: 8px;">
+        <br><sub>Responsive about layout with scroll-reveal animations</sub>
+      </td>
+    </tr>
+    <tr>
+      <td width="50%" align="center">
+        <strong>📝 Booking Form</strong><br>
+        <img src="assets/images/ui/book-img.png" alt="Booking form" width="100%" style="border-radius: 8px;">
+        <br><sub>CSRF-protected booking form with date validation</sub>
+      </td>
+      <td width="50%" align="center">
+        <strong>🖼️ Gallery Grid</strong><br>
+        <img src="assets/images/destinations/A1.jpeg" alt="Gallery showcase" width="100%" style="border-radius: 8px;">
+        <br><sub>Hover-zoom gallery with particle network overlay</sub>
+      </td>
+    </tr>
+  </table>
+</div>
 
 </details>
 
@@ -140,6 +159,23 @@ This isn't another Laravel clone or a WordPress travel theme. **Tour And Travel 
 | **Saint Martin** 🏖️ | Bay of Bengal | Coral Island · Beach | **8,000 ৳** |
 | **Shait-Gumbad Mosque** 🕌 | Bagerhat | Historic Mosque · UNESCO Tentative | **1,500 ৳** |
 
+</div>
+
+<br>
+
+<div align="center">
+  <table>
+    <tr>
+      <td align="center"><strong>Sundarbans 🌿</strong><br><img src="assets/images/destinations/Sundarbans.jpg" width="180" height="120" style="object-fit: cover; border-radius: 6px;"></td>
+      <td align="center"><strong>Srimangal 🍵</strong><br><img src="assets/images/destinations/Srimangal.jpeg" width="180" height="120" style="object-fit: cover; border-radius: 6px;"></td>
+      <td align="center"><strong>Rangamati 🏞️</strong><br><img src="assets/images/destinations/Rangamati.jpg" width="180" height="120" style="object-fit: cover; border-radius: 6px;"></td>
+    </tr>
+    <tr>
+      <td align="center"><strong>Bandarbans ⛰️</strong><br><img src="assets/images/destinations/Bandarbans.jpg" width="180" height="120" style="object-fit: cover; border-radius: 6px;"></td>
+      <td align="center"><strong>Saint Martin 🏖️</strong><br><img src="assets/images/destinations/Saint Martin.jpeg" width="180" height="120" style="object-fit: cover; border-radius: 6px;"></td>
+      <td align="center"><strong>Shait-Gumbad 🕌</strong><br><img src="assets/images/destinations/Shait-Gumbad Mosque.jpeg" width="180" height="120" style="object-fit: cover; border-radius: 6px;"></td>
+    </tr>
+  </table>
 </div>
 
 <p align="center"><em>🌸 Prices in Bangladeshi Taka (BDT). Packages include guided tours & standard accommodations.</em></p>
@@ -272,6 +308,51 @@ sequenceDiagram
       </td>
     </tr>
   </table>
+</div>
+
+<br>
+
+---
+
+## 📖 About & Booking
+
+<div align="center">
+  <table>
+    <tr>
+      <td width="50%" align="center">
+        <strong>🏕️ About Tour And Travel Touch</strong><br><br>
+        <img src="assets/images/ui/about-img.png" alt="About us" width="90%" style="border-radius: 8px;">
+        <br><br>
+        <sub>Discover hand-picked destinations across Bangladesh with immersive visuals and seamless booking.</sub>
+      </td>
+      <td width="50%" align="center">
+        <strong>📝 Book Your Journey</strong><br><br>
+        <img src="assets/images/ui/book-img.png" alt="Booking form" width="90%" style="border-radius: 8px;">
+        <br><br>
+        <sub>Secure CSRF-protected booking with date validation and instant confirmation.</sub>
+      </td>
+    </tr>
+  </table>
+</div>
+
+<br>
+
+---
+
+## 🖼️ Gallery Preview
+
+<div align="center">
+  <table>
+    <tr>
+      <td><img src="assets/images/destinations/A1.jpeg" width="150" height="110" style="border-radius: 6px; object-fit: cover;"></td>
+      <td><img src="assets/images/destinations/A2.jpeg" width="150" height="110" style="border-radius: 6px; object-fit: cover;"></td>
+      <td><img src="assets/images/destinations/A3.jpeg" width="150" height="110" style="border-radius: 6px; object-fit: cover;"></td>
+      <td><img src="assets/images/destinations/A4.jpg" width="150" height="110" style="border-radius: 6px; object-fit: cover;"></td>
+      <td><img src="assets/images/destinations/A5.jpg" width="150" height="110" style="border-radius: 6px; object-fit: cover;"></td>
+      <td><img src="assets/images/destinations/A6.jpeg" width="150" height="110" style="border-radius: 6px; object-fit: cover;"></td>
+    </tr>
+  </table>
+  <sub>🌄 Scenic gallery showcasing Bangladesh's natural beauty</sub>
 </div>
 
 <br>
