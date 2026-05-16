@@ -16,12 +16,13 @@ declare(strict_types=1);
  |
  */
 
-define('FRONTEND_URL', getenv('FRONTEND_URL') ?: 'https://mahfujul-01726.github.io/TourAndTravelTouch');
+define('FRONTEND_URL', getenv('FRONTEND_URL') ?: 'https://tourandtraveltouch.great-site.net');
 
 function setCorsHeaders(): void
 {
     $origin = $_SERVER['HTTP_ORIGIN'] ?? '*';
     $allowedOrigins = [
+        'https://tourandtraveltouch.great-site.net',
         'https://mahfujul-01726.github.io',
         'http://localhost:8000',
         'http://localhost',
@@ -30,7 +31,7 @@ function setCorsHeaders(): void
     if (in_array($origin, $allowedOrigins, true)) {
         header('Access-Control-Allow-Origin: ' . $origin);
     } else {
-        header('Access-Control-Allow-Origin: https://mahfujul-01726.github.io');
+        header('Access-Control-Allow-Origin: https://tourandtraveltouch.great-site.net');
     }
 
     header('Access-Control-Allow-Credentials: true');

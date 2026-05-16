@@ -13,8 +13,8 @@
 <table>
   <tr>
     <td>
-      <a href="https://mahfujul-01726.github.io/TourAndTravelTouch">
-        <img src="https://img.shields.io/badge/🌐_Live_Demo-Explore_Now-00d2ff?style=for-the-badge&labelColor=1a1a2e" alt="Live Demo">
+      <a href="https://tourandtraveltouch.great-site.net">
+        <img src="https://img.shields.io/badge/🌐_Live_Site-Visit_Now-00d2ff?style=for-the-badge&labelColor=1a1a2e" alt="Live Site">
       </a>
     </td>
     <td>
@@ -66,7 +66,7 @@
 - [Features](#-features)
 - [Tech Stack](#-tech-stack)
 - [Architecture](#-architecture)
-- [Quick Start (InfinityFree)](#-quick-start--infinityfree-free-hosting)
+- [Quick Start](#-quick-start)
 - [API Reference](#-api-reference)
 - [Database](#-database)
 - [Security](#-security)
@@ -233,265 +233,94 @@ Six hand-picked experiences across Bangladesh, each with its own story:
 
 ---
 
-## 🚀 Quick Start — Hybrid Setup (Frontend: GitHub Pages + Backend: InfinityFree)
+## 🚀 Quick Start
 
-Your frontend is already live on **GitHub Pages**. You only need to deploy the **PHP backend + MySQL** to InfinityFree.
+Everything runs on **InfinityFree** — one domain, no cross-origin issues.
 
 ### Step 1: Create InfinityFree Account
 
 1. Go to **[infinityfree.com](https://infinityfree.com)** → **Sign Up**
-2. Confirm your email
-3. Log in to the control panel
+2. Confirm your email → Log in to the control panel
 
 ### Step 2: Create Database
 
-1. In the control panel, go to **MySQL Databases**
-2. Click **Create Database**
-3. A database will be created with credentials like:
+1. Go to **MySQL Databases** → **Create Database**
+2. Copy the credentials (they look like this):
    ```
    Hostname: sqlXXX.infinityfree.com
-   Database: if0_XXXXX_firstsql
+   Database: if0_XXXXX_databasename
    Username: if0_XXXXX
-   Password: (copy this — shown once)
+   Password: (shown once — save it)
    ```
-4. Copy these credentials somewhere safe
 
-### Step 3: Import Database Schema
+### Step 3: Import Schema
 
-1. In the control panel, open **phpMyAdmin**
-2. Select your database from the left sidebar
-3. Click **Import** tab → **Choose File**
-4. Select `database/schema.sql` from this project
-5. Click **Go** → schema imported ✅
+1. Open **phpMyAdmin** → select your database
+2. Click **Import** → choose `database/schema.sql` → **Go**
 
-### Step 4: Update Backend Config
+### Step 4: Configure
 
-Open **`backend/config/database.php`** and replace the placeholder values with your InfinityFree credentials:
+Open **`backend/config/database.php`** and paste your credentials:
 
 ```php
-define('DB_HOST', 'sqlXXX.infinityfree.com');   // ← from step 2
-define('DB_NAME', 'if0_XXXXX_firstsql');        // ← from step 2
-define('DB_USER', 'if0_XXXXX');                 // ← from step 2
-define('DB_PASS', 'your_password_here');         // ← from step 2
+define('DB_HOST', 'sql305.infinityfree.com');
+define('DB_NAME', 'if0_41936508_firstsql');
+define('DB_USER', 'if0_41936508');
+define('DB_PASS', '3a4jNkVeAq');
 ```
 
-### Step 5: Update Frontend Config
+> If you re-import the schema, also run this SQL in phpMyAdmin to create the admin table:
+> ```sql
+> CREATE TABLE IF NOT EXISTS admins (
+>     id INT AUTO_INCREMENT PRIMARY KEY,
+>     username VARCHAR(100) NOT NULL UNIQUE,
+>     password_hash VARCHAR(255) NOT NULL,
+>     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+> ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+> ```
 
-Open **`assets/js/config.js`** and set your InfinityFree domain:
+### Step 5: Upload Everything
 
-```js
-const BACKEND_URL = 'https://your-domain.infinityfreeapp.com';
-```
+1. File Manager → go into `htdocs/` → delete default files
+2. **Upload the entire project** — all files and folders
+3. Wait for upload to complete
 
-> ⚡ This tells the frontend (GitHub Pages) where to find the PHP backend.
+### Step 6: Launch 🎉
 
-### Step 6: Upload Backend Files to InfinityFree
-
-1. In the control panel, open **File Manager**
-2. Navigate to `htdocs/` (delete default files if any)
-3. Upload **only these folders/files**:
-   ```
-   backend/     ← PHP API
-   database/    ← Schema (already imported, but safe to keep)
-   ```
-4. Wait for upload to complete (usually 10–30 seconds)
-
-> ⚡ **DO NOT** upload `index.html`, `assets/`, or `pages/` to InfinityFree. Those stay on GitHub Pages.
-
-### Step 7: Launch 🎉
-
-Visit your GitHub Pages URL — everything should work:
+Visit your InfinityFree domain — everything works on one domain:
 
 ```
-https://mahfujul-01726.github.io/TourAndTravelTouch
-```
-
-Bookings, search, and registration now talk to your InfinityFree backend seamlessly.
-
----
-
-### 📁 Final Architecture
-
-```
-GitHub Pages (https://mahfujul-01726.github.io/TourAndTravelTouch)
-├── index.html
-├── assets/          ← static files (CSS, JS, images)
-└── pages/signup.html
-        │
-        │  fetch() / form POST (CORS + credentials: include)
-        ▼
-InfinityFree (https://your-domain.infinityfreeapp.com)
-├── backend/
-│   ├── config/
-│   ├── handlers/    ← PHP API endpoints
-│   └── helpers.php
-└── database/
+https://tourandtraveltouch.great-site.net
 ```
 
 ---
 
-## 🔌 API Reference
-
-All endpoints return JSON responses with appropriate HTTP status codes.
-
-| Method | Endpoint | Description | Auth | Request Body |
-|:------:|:---------|:------------|:----:|:-------------|
-| `GET` | `/backend/handlers/csrf-token.php` | Request a CSRF token | ✗ | — |
-| `GET` | `/backend/handlers/flash.php` | Retrieve pending flash messages | ✗ | — |
-| `POST` | `/backend/handlers/booking.php` | Submit a booking inquiry | ✓ CSRF | `whereto`, `howmany`, `arrival`, `leaving`, `text` |
-| `POST` | `/backend/handlers/search.php` | Search for existing bookings | ✓ CSRF | `search` (customer name/details) |
-| `POST` | `/backend/handlers/register.php` | Create a user account | ✓ CSRF | `fullname`, `email`, `password` |
-
-### Example: Submit a Booking
-
-```bash
-curl -X POST http://localhost:8000/backend/handlers/booking.php \
-  -d "whereto=Sundarbans" \
-  -d "howmany=2" \
-  -d "arrival=2026-06-01" \
-  -d "leaving=2026-06-05" \
-  -d "text=John Doe, additional requests" \
-  -d "csrf_token=<your_token>"
-```
-
-### Example: Request CSRF Token
-
-```bash
-curl http://localhost:8000/backend/handlers/csrf-token.php
-# → {"csrf_token":"a1b2c3d4e5f6..."}
-```
-
----
-
-## 🗄️ Database
-
-```sql
--- Database: firstsql
--- Full schema available in database/schema.sql
-```
-
-### `information` — Booking Records
-
-| Column | Type | Constraints | Description |
-|:-------|:-----|:-----------|:------------|
-| `id` | `INT` | `PK AUTO_INCREMENT` | Unique booking ID |
-| `whereto` | `VARCHAR(255)` | `NOT NULL` | Destination name |
-| `howmany` | `VARCHAR(50)` | `NOT NULL` | Number of travelers |
-| `arrival` | `DATE` | `NOT NULL` | Check-in date |
-| `leaving` | `DATE` | `NOT NULL` | Check-out date |
-| `textdata` | `TEXT` | — | Customer name & notes |
-| `created_at` | `TIMESTAMP` | `DEFAULT CURRENT_TIMESTAMP` | Record created |
-| `updated_at` | `TIMESTAMP` | `ON UPDATE CURRENT_TIMESTAMP` | Last modified |
-
-### `users` — User Accounts
-
-| Column | Type | Constraints | Description |
-|:-------|:-----|:-----------|:------------|
-| `id` | `INT` | `PK AUTO_INCREMENT` | Unique user ID |
-| `fullname` | `VARCHAR(255)` | `NOT NULL` | User's full name |
-| `email` | `VARCHAR(255)` | `NOT NULL UNIQUE` | Login email |
-| `password_hash` | `VARCHAR(255)` | `NOT NULL` | Bcrypt hash (cost 12) |
-| `created_at` | `TIMESTAMP` | `DEFAULT CURRENT_TIMESTAMP` | Account created |
-| `updated_at` | `TIMESTAMP` | `ON UPDATE CURRENT_TIMESTAMP` | Last modified |
-
----
-
-## 🔒 Security
-
-<div align="center">
-
-| Practice | Implementation | Status |
-|:---------|:--------------|:------:|
-| **CSRF Protection** | 32-byte random tokens, server-validated per session | ✅ |
-| **SQL Injection Prevention** | Parameterized queries via `mysqli` prepared statements | ✅ |
-| **Password Hashing** | `password_hash()` with `PASSWORD_BCRYPT` (cost 12) | ✅ |
-| **Input Validation** | Server-side type checks, length limits, format validation | ✅ |
-| **Output Escaping** | `htmlspecialchars()` with `ENT_QUOTES` on all rendered data | ✅ |
-| **Error Handling** | Generic user-facing messages; detailed errors in server logs only | ✅ |
-| **Session Security** | HTTP-only cookies, secure flag in production | ✅ |
-
-</div>
-
----
-
-## 🎨 Themes
-
-Two distinct visual identities — switch with a single CSS file swap:
-
-| Theme | Preview Color | File | Lines |
-|:-----|:-------------|:-----|:-----:|
-| **Orange / Black** 🟠 | `#ff6b35` primary, dark backgrounds, gold accents | `theme-orange.css` | ~2,521 |
-| **Red / Green** 🔴 | `#e74c3c` primary, forest-green secondary, warm tones | `theme-red.css` | ~1,113 |
-
-Both themes include complete styling for all components: navbar, cards, forms, buttons, galleries, and animations. The vibrant default captures sunset and adventure; the alternative channels heritage and nature.
-
----
-
-## ☁️ Deployment Options
-
-### 1. InfinityFree (Free — Recommended)
-
-Follow the **[Quick Start](#-quick-start--infinityfree-free-hosting)** guide above.
-
-### 2. Local Development
-
-```bash
-# Requires PHP + MySQL installed locally
-git clone https://github.com/mahfujul-01726/TourAndTravelTouch.git
-cd TourAndTravelTouch
-mysql -u root -p < database/schema.sql
-php -S localhost:8000
-```
-
-Open `http://localhost:8000`
-
-### 3. GitHub Pages (Frontend Only)
-
-The frontend can be deployed to GitHub Pages via the included workflow:
-
-```yaml
-# .github/workflows/deploy.yml
-# Trigger: push to main
-```
-
-Go to repository **Settings → Pages → Source: GitHub Actions** and push to `main`.
-
-## 🔐 Admin Panel
-
-Manage your bookings and users through a password-protected dashboard.
-
-| Feature | URL |
-|---------|-----|
-| **Admin Login** | [`https://tourandtraveltouch.great-site.net/backend/admin/login.php`](https://tourandtraveltouch.great-site.net/backend/admin/login.php) |
-| **Dashboard** | Auto-redirects after login |
-
-**Default credentials:**
-```
-Username: admin
-Password: admin123
-```
-
-> ⚡ **First visit** creates the admin table and default account automatically.  
-> ⚡ **Change the password** after first login for security.
-
-**Dashboard shows:**
-- Stats cards — total bookings & registered users
-- Bookings table — destination, travelers, dates, customer details
-- Users table — full name, email, registration date
-
----
-
-## 📈 Live URLs
+### 📁 Live URLs
 
 | Resource | URL |
 |----------|-----|
-| **Website** | [mahfujul-01726.github.io/TourAndTravelTouch](https://mahfujul-01726.github.io/TourAndTravelTouch) |
+| **Website** | [tourandtraveltouch.great-site.net](https://tourandtraveltouch.great-site.net) |
 | **Admin Panel** | [tourandtraveltouch.great-site.net/backend/admin/login.php](https://tourandtraveltouch.great-site.net/backend/admin/login.php) |
-| **Backend API** | [tourandtraveltouch.great-site.net/backend](https://tourandtraveltouch.great-site.net/backend) |
+| **GitHub Mirror** | [mahfujul-01726.github.io/TourAndTravelTouch](https://mahfujul-01726.github.io/TourAndTravelTouch) |
 
 ---
 
-## 🤝 Contributing
+## 🔐 Admin Panel
+
+Manage bookings and users from a password-protected dashboard.
+
+| | |
+|--|--|
+| **URL** | [`/backend/admin/login.php`](https://tourandtraveltouch.great-site.net/backend/admin/login.php) |
+| **Username** | `admin` |
+| **Password** | `admin123` |
+
+> First visit auto-creates the admin account. Change the password after logging in.
+
+**Dashboard features:**
+- Stats cards — total bookings & registered users
+- Bookings table — destination, travelers, dates, customer details
+- Users table — full name, email, registration date
 
 Contributions are what make the open-source community an incredible place to learn and grow.
 
