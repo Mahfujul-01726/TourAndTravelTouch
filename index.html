@@ -20,6 +20,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <script src="assets/js/config.js"></script>
+    <style>
+        .booking-user-info { animation: fadeIn 0.3s ease; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
 </head>
 <body>
 
@@ -110,10 +114,28 @@
                             <span>Search</span>
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item auth-hidden" id="navLogin">
+                        <a class="nav-link" href="pages/login.html">
+                            <i class="fa-solid fa-sign-in-alt"></i>
+                            <span>Log In</span>
+                        </a>
+                    </li>
+                    <li class="nav-item auth-hidden" id="navSignup">
                         <a class="nav-link nav-signup" href="pages/signup.html">
                             <i class="fa-solid fa-user-plus"></i>
                             <span>Sign Up</span>
+                        </a>
+                    </li>
+                    <li class="nav-item auth-visible" id="navUser" style="display:none">
+                        <a class="nav-link" href="#book">
+                            <i class="fa-solid fa-user"></i>
+                            <span id="navUserName">Account</span>
+                        </a>
+                    </li>
+                    <li class="nav-item auth-visible" id="navLogout" style="display:none">
+                        <a class="nav-link backend-link" href="backend/handlers/logout.php">
+                            <i class="fa-solid fa-right-from-bracket"></i>
+                            <span>Log Out</span>
                         </a>
                     </li>
                 </ul>
@@ -566,12 +588,21 @@
                 </div>
 
                 <div class="col-md-6 py-3 py-md-0" data-animate="fade-right">
-                    <form action="backend/handlers/booking.php" method="post">
+                    <div id="bookingUserInfo" class="booking-user-info" style="display:none;margin-bottom:15px;padding:12px 16px;background:rgba(255,165,0,0.08);border-radius:10px;border-left:3px solid #ffa500;">
+                        <i class="fa-solid fa-user-check" style="color:#ffa500;"></i>
+                        <span>Booking as: <strong id="bookingUserName"></strong> (<span id="bookingUserEmail"></span>)</span>
+                    </div>
+                    <div id="bookingAuthWall" style="display:none;text-align:center;padding:40px 20px;background:rgba(255,165,0,0.05);border-radius:12px;">
+                        <i class="fa-solid fa-lock" style="font-size:32px;color:#ffa500;margin-bottom:12px;"></i>
+                        <p style="font-size:16px;color:#555;margin-bottom:16px;">Please log in to make a booking.</p>
+                        <a href="pages/login.html" class="submit" style="display:inline-block;text-decoration:none;padding:12px 32px;">Log In Now</a>
+                    </div>
+                    <form action="backend/handlers/booking.php" method="post" id="bookingForm">
                         <input type="text" class="form-control" name="whereto" placeholder="Where To" required>
                         <input type="text" class="form-control" name="howmany" placeholder="How Many" required>
                         <input type="date" class="form-control" name="arrival" placeholder="Arrivals" required>
                         <input type="date" class="form-control" name="leaving" placeholder="Leaving" required>
-                        <textarea class="form-control" rows="5" name="text" placeholder="Enter Your Name & Details" required></textarea>
+                        <textarea class="form-control" rows="3" name="notes" placeholder="Additional Notes (optional)"></textarea>
                         <input type="submit" value="Book Now" class="submit" required>
                     </form>
                 </div>
@@ -1112,6 +1143,13 @@
             }
         });
 
+        document.querySelectorAll('a.backend-link').forEach(link => {
+            const href = link.getAttribute('href');
+            if (href && href.includes('backend/') && API) {
+                link.href = resolveBackend(href);
+            }
+        });
+
         fetch(resolveBackend('backend/handlers/csrf-token.php'), { credentials: 'include' })
             .then(r => r.json())
             .then(data => {
@@ -1280,6 +1318,42 @@
                 }
             })
             .catch(() => {});
+
+        // ── Auth Status Check ──
+        (function checkAuth() {
+            const authHidden = document.querySelectorAll('.auth-hidden');
+            const authVisible = document.querySelectorAll('.auth-visible');
+            const bookingUserInfo = document.getElementById('bookingUserInfo');
+            const bookingAuthWall = document.getElementById('bookingAuthWall');
+            const bookingForm = document.getElementById('bookingForm');
+            const navUserName = document.getElementById('navUserName');
+            const bookingUserName = document.getElementById('bookingUserName');
+            const bookingUserEmail = document.getElementById('bookingUserEmail');
+
+            fetch(resolveBackend('backend/handlers/auth-status.php'), { credentials: 'include' })
+                .then(r => r.json())
+                .then(data => {
+                    if (data.loggedIn) {
+                        authHidden.forEach(el => el.style.display = 'none');
+                        authVisible.forEach(el => el.style.display = '');
+                        if (bookingAuthWall) bookingAuthWall.style.display = 'none';
+                        if (bookingUserInfo) {
+                            bookingUserInfo.style.display = '';
+                            bookingUserName.textContent = data.user.name;
+                            bookingUserEmail.textContent = data.user.email;
+                        }
+                        if (navUserName) navUserName.textContent = data.user.name;
+                        if (bookingForm) bookingForm.style.display = '';
+                    } else {
+                        authHidden.forEach(el => el.style.display = '');
+                        authVisible.forEach(el => el.style.display = 'none');
+                        if (bookingAuthWall) bookingAuthWall.style.display = '';
+                        if (bookingUserInfo) bookingUserInfo.style.display = 'none';
+                        if (bookingForm) bookingForm.style.display = 'none';
+                    }
+                })
+                .catch(() => {});
+        })();
 
         // ── Footer Interactivity ──
         (function initFooter() {

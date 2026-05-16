@@ -90,3 +90,57 @@ function userExists(mysqli $connection, string $email): bool
 
     return $exists;
 }
+
+function getUserByEmail(mysqli $connection, string $email): ?array
+{
+    $stmt = mysqli_prepare($connection, 'SELECT id, fullname, email, password_hash FROM users WHERE email = ?');
+    if (!$stmt) {
+        return null;
+    }
+
+    mysqli_stmt_bind_param($stmt, 's', $email);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+    $user = mysqli_fetch_assoc($result);
+    mysqli_stmt_close($stmt);
+
+    return $user ?: null;
+}
+
+function isUserLoggedIn(): bool
+{
+    return isset($_SESSION['user_id']) && $_SESSION['user_id'] > 0;
+}
+
+function getLoggedInUser(): ?array
+{
+    if (!isUserLoggedIn()) {
+        return null;
+    }
+
+    return [
+        'id' => $_SESSION['user_id'],
+        'name' => $_SESSION['user_name'] ?? '',
+        'email' => $_SESSION['user_email'] ?? '',
+    ];
+}
+
+function requireLogin(): void
+{
+    if (!isUserLoggedIn()) {
+        redirectWithFlash('/pages/login.html', 'error', 'Please log in first to make a booking.');
+    }
+}
+
+function ensureBookingUserColumn(mysqli $connection): void
+{
+    $result = mysqli_query($connection, "SHOW COLUMNS FROM information LIKE 'user_id'");
+    if (mysqli_num_rows($result) === 0) {
+        mysqli_query($connection, "ALTER TABLE information
+            ADD COLUMN user_id INT DEFAULT NULL AFTER textdata,
+            ADD COLUMN user_name VARCHAR(255) DEFAULT NULL AFTER user_id,
+            ADD COLUMN user_email VARCHAR(255) DEFAULT NULL AFTER user_name,
+            ADD INDEX idx_user_id (user_id),
+            ADD INDEX idx_user_email (user_email)");
+    }
+}

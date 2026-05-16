@@ -11,6 +11,8 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     redirect('/index.html');
 }
 
+requireLogin();
+
 if (!validateCsrfToken($_POST['csrf_token'] ?? '')) {
     redirectWithFlash('/index.html', 'error', 'Invalid form submission. Please try again.');
 }
@@ -19,9 +21,9 @@ $whereto = trim($_POST['whereto'] ?? '');
 $howmany = trim($_POST['howmany'] ?? '');
 $arrival = trim($_POST['arrival'] ?? '');
 $leaving = trim($_POST['leaving'] ?? '');
-$nameAndDetails = trim($_POST['text'] ?? '');
+$notes = trim($_POST['notes'] ?? '');
 
-if ($whereto === '' || $howmany === '' || $arrival === '' || $leaving === '' || $nameAndDetails === '') {
+if ($whereto === '' || $howmany === '' || $arrival === '' || $leaving === '') {
     redirectWithFlash('/index.html', 'error', 'All fields are required.');
 }
 
@@ -41,12 +43,16 @@ if ($arrival >= $leaving) {
     redirectWithFlash('/index.html', 'error', 'Departure date must be after arrival date.');
 }
 
-$stmt = mysqli_prepare($connection, 'INSERT INTO information (whereto, howmany, arrival, leaving, textdata) VALUES (?, ?, ?, ?, ?)');
+$user = getLoggedInUser();
+
+ensureBookingUserColumn($connection);
+
+$stmt = mysqli_prepare($connection, 'INSERT INTO information (whereto, howmany, arrival, leaving, textdata, user_id, user_name, user_email) VALUES (?, ?, ?, ?, ?, ?, ?, ?)');
 if (!$stmt) {
     redirectWithFlash('/index.html', 'error', 'A system error occurred. Please try again.');
 }
 
-mysqli_stmt_bind_param($stmt, 'sssss', $whereto, $howmany, $arrival, $leaving, $nameAndDetails);
+mysqli_stmt_bind_param($stmt, 'sssssiss', $whereto, $howmany, $arrival, $leaving, $notes, $user['id'], $user['name'], $user['email']);
 
 if (mysqli_stmt_execute($stmt)) {
     redirectWithFlash('/index.html', 'success', 'Booking submitted successfully! We will contact you soon.');

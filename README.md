@@ -491,7 +491,7 @@ Password: admin123
 
 ---
 
-## ☁️ Deployment Options
+## 🤝 Contributing
 
 Contributions are what make the open-source community an incredible place to learn and grow.
 

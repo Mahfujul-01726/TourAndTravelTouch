@@ -13,9 +13,14 @@ CREATE TABLE IF NOT EXISTS information (
     howmany VARCHAR(50) NOT NULL COMMENT 'Number of travelers',
     arrival DATE NOT NULL COMMENT 'Arrival date',
     leaving DATE NOT NULL COMMENT 'Departure date',
-    textdata TEXT COMMENT 'Customer name and additional details',
+    textdata TEXT COMMENT 'Additional notes from the customer',
+    user_id INT DEFAULT NULL COMMENT 'FK to users.id',
+    user_name VARCHAR(255) DEFAULT NULL COMMENT 'Customer name (from logged-in user)',
+    user_email VARCHAR(255) DEFAULT NULL COMMENT 'Customer email (from logged-in user)',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    INDEX idx_user_id (user_id),
+    INDEX idx_user_email (user_email)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- User accounts table

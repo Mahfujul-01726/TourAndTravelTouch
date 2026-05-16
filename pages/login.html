@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up - Tour And Travel Touch</title>
+    <title>Log In - Tour And Travel Touch</title>
     <link rel="stylesheet" href="../assets/css/theme-orange.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
@@ -21,7 +21,7 @@
             justify-content: center;
             padding: 20px;
         }
-        .signup-card {
+        .login-card {
             background: rgba(255,255,255,0.92);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
@@ -32,13 +32,13 @@
             max-width: 420px;
             border: 1px solid rgba(255,255,255,0.3);
         }
-        .signup-brand {
+        .login-brand {
             text-align: center;
             margin-bottom: 32px;
             text-decoration: none;
             display: block;
         }
-        .signup-brand .brand-icon {
+        .login-brand .brand-icon {
             width: 48px;
             height: 48px;
             display: inline-flex;
@@ -51,9 +51,9 @@
             box-shadow: 0 4px 15px rgba(255,165,0,0.3);
             margin-bottom: 12px;
         }
-        .signup-brand h1 { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 24px; color: #1a1a2e; }
-        .signup-brand h1 span { color: #ffa500; }
-        .signup-card .form-control {
+        .login-brand h1 { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 24px; color: #1a1a2e; }
+        .login-brand h1 span { color: #ffa500; }
+        .login-card .form-control {
             padding: 14px 16px;
             margin-bottom: 14px;
             border-radius: 12px;
@@ -62,12 +62,12 @@
             font-size: 15px;
             transition: all 0.3s ease;
         }
-        .signup-card .form-control:focus {
+        .login-card .form-control:focus {
             border-color: #ffa500;
             background: white;
             box-shadow: 0 0 0 3px rgba(255,165,0,0.1);
         }
-        .signup-card .btn-primary {
+        .login-card .btn-primary {
             width: 100%;
             padding: 14px;
             background: linear-gradient(135deg, #ffa500, #ff7b00);
@@ -79,14 +79,14 @@
             cursor: pointer;
             transition: all 0.3s ease;
         }
-        .signup-card .btn-primary:hover {
+        .login-card .btn-primary:hover {
             background: linear-gradient(135deg, #ff7b00, #e66900);
             transform: translateY(-1px);
             box-shadow: 0 6px 20px rgba(255,165,0,0.3);
         }
-        .signup-divider { position: relative; text-align: center; margin: 24px 0; }
-        .signup-divider hr { border: none; border-top: 1px solid #e0e0e0; }
-        .signup-divider span {
+        .login-divider { position: relative; text-align: center; margin: 24px 0; }
+        .login-divider hr { border: none; border-top: 1px solid #e0e0e0; }
+        .login-divider span {
             position: absolute;
             top: 50%;
             left: 50%;
@@ -96,9 +96,9 @@
             color: #999;
             font-size: 13px;
         }
-        .login-link { text-align: center; margin-top: 16px; font-size: 14px; color: #666; }
-        .login-link a { color: #ffa500; text-decoration: none; font-weight: 600; }
-        .login-link a:hover { text-decoration: underline; }
+        .signup-link { text-align: center; margin-top: 16px; font-size: 14px; color: #666; }
+        .signup-link a { color: #ffa500; text-decoration: none; font-weight: 600; }
+        .signup-link a:hover { text-decoration: underline; }
         .back-link { text-align: center; margin-top: 16px; }
         .back-link a { color: #888; text-decoration: none; font-size: 13px; }
         .back-link a:hover { color: #ffa500; }
@@ -124,22 +124,21 @@
 <body>
     <div id="flashToast" class="flash-toast fixed-flash" role="alert"></div>
 
-    <div class="signup-card">
-        <a href="../index.html" class="signup-brand">
+    <div class="login-card">
+        <a href="../index.html" class="login-brand">
             <div class="brand-icon"><i class="fa-solid fa-compass"></i></div>
-            <h1><span>Sign</span> Up Now</h1>
+            <h1><span>Log</span> In</h1>
         </a>
-        <form action="../backend/handlers/register.php" method="post">
-            <input type="text" name="fullname" class="form-control" placeholder="Full Name" required>
+        <form action="../backend/handlers/login.php" method="post">
             <input type="email" name="email" class="form-control" placeholder="Your Email" required>
-            <input type="password" name="password" class="form-control" placeholder="Password (min. 8 characters)" required minlength="8">
-            <button type="submit" class="btn btn-primary">Create Account</button>
+            <input type="password" name="password" class="form-control" placeholder="Password" required>
+            <button type="submit" class="btn btn-primary">Log In</button>
         </form>
-        <div class="signup-divider">
+        <div class="login-divider">
             <hr><span>OR</span>
         </div>
-        <div class="login-link">
-            <p>Already have an account? <a href="login.html">Log In Now</a></p>
+        <div class="signup-link">
+            <p>Don't have an account? <a href="signup.html">Sign Up Now</a></p>
         </div>
         <div class="back-link">
             <a href="../index.html"><i class="fa-solid fa-arrow-left"></i> Back to Home</a>
@@ -147,7 +146,6 @@
     </div>
 
     <script>
-        // Backend URL / CSRF Token Injection
         const API = typeof BACKEND_URL !== 'undefined' ? BACKEND_URL : '';
 
         function resolveBackend(path) {
@@ -176,7 +174,6 @@
             })
             .catch(() => {});
 
-        // Flash Message Display
         function showFlash(type, message) {
             const toast = document.getElementById('flashToast');
             toast.className = 'flash-toast fixed-flash flash-' + type + ' show';
