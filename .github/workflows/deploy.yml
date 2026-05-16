@@ -14,21 +14,33 @@ jobs:
       - name: Install LFTP
         run: sudo apt-get update && sudo apt-get install -y lftp
 
+      - name: Debug FTP connection
+        env:
+          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+        run: |
+          echo "Testing connection to ftpupload.net on port 21..."
+          timeout 15 bash -c 'echo > /dev/tcp/ftpupload.net/21 && echo "Port 21 OPEN" || echo "Port 21 CLOSED"'
+          echo ""
+          echo "Trying DNS resolution..."
+          nslookup ftpupload.net 2>&1 || true
+          echo ""
+          echo "Attempting FTP login (verbose)..."
+          lftp -c "
+            debug 3
+            open -u \"$FTP_USERNAME\",\"$FTP_PASSWORD\" ftpupload.net
+            pwd
+            quit
+          " 2>&1 || echo "FAILED"
+
       - name: Deploy via LFTP
         env:
           FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
           FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
         run: |
-          if [ -z "$FTP_USERNAME" ] || [ -z "$FTP_PASSWORD" ]; then
-            echo "ERROR: Secrets FTP_USERNAME and FTP_PASSWORD must be set in GitHub repo Settings > Secrets and variables > Actions"
-            echo "Current FTP_USERNAME value length: ${#FTP_USERNAME}"
-            echo "Current FTP_PASSWORD value length: ${#FTP_PASSWORD}"
-            exit 1
-          fi
           lftp -e "
-            set ftp:ssl-force true
-            set ftp:ssl-protect-data true
-            set ssl:verify-certificate no
+            debug 3
+            set ftp:ssl-allow false
             mirror -R ./ /htdocs/ \
               --exclude-glob .git* \
               --exclude-glob .github \
