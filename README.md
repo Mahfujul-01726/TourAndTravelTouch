@@ -51,7 +51,7 @@
 <div align="center">
   <table>
     <tr>
-      <td width="33%" align="center">
+      <td width="25%" align="center">
         <br>
         <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Travel%20and%20places/Airplane.png" alt="Airplane" width="40" />
         <br><br>
@@ -60,7 +60,7 @@
         <sub>Across Bangladesh</sub>
         <br><br>
       </td>
-      <td width="33%" align="center">
+      <td width="25%" align="center">
         <br>
         <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Travel%20and%20places/Map%20of%20Japan.png" alt="Map" width="40" />
         <br><br>
@@ -69,13 +69,22 @@
         <sub>Register → Browse → Book</sub>
         <br><br>
       </td>
-      <td width="33%" align="center">
+      <td width="25%" align="center">
         <br>
         <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Travel%20and%20places/Globe%20Showing%20Asia-Australia.png" alt="Globe" width="40" />
         <br><br>
         <strong>Live Demo</strong>
         <br>
         <sub>Hosted & Deployed</sub>
+        <br><br>
+      </td>
+      <td width="25%" align="center">
+        <br>
+        <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Locked%20with%20Pen.png" alt="Secure" width="40" />
+        <br><br>
+        <strong>Security First</strong>
+        <br>
+        <sub>CSRF · bcrypt · XSS Safe</sub>
         <br><br>
       </td>
     </tr>
@@ -134,6 +143,42 @@ This isn't another Laravel clone or a WordPress travel theme. **Tour And Travel 
 </div>
 
 <p align="center"><em>🌸 Prices in Bangladeshi Taka (BDT). Packages include guided tours & standard accommodations.</em></p>
+
+---
+
+## 🎯 User Journey — How a Booking Happens
+
+```mermaid
+sequenceDiagram
+    participant 🧑 User
+    participant 🌐 Frontend
+    participant ⚙️ PHP Backend
+    participant 🗄️ Database
+
+    User->>Frontend: ✨ Browses destination cards
+    Frontend->>Frontend: 🎬 3D tilt · parallax · animations
+    User->>Frontend: 📝 Clicks "Register"
+    Frontend->>PHP Backend: POST /handlers/register.php
+    PHP Backend->>PHP Backend: 🔐 Validate input · hash password (bcrypt cost 12)
+    PHP Backend->>Database: INSERT INTO users
+    Database-->>PHP Backend: ✅ User created
+    PHP Backend-->>Frontend: 🔄 Redirect to login
+
+    User->>Frontend: 🔑 Logs in
+    Frontend->>PHP Backend: POST /handlers/login.php
+    PHP Backend->>Database: SELECT * FROM users WHERE email = ?
+    Database-->>PHP Backend: 👤 User row
+    PHP Backend->>PHP Backend: ✅ bcrypt verify · regenerate session
+    PHP Backend-->>Frontend: 🍪 Session cookie + redirect
+
+    User->>Frontend: 📋 Fills booking form
+    Frontend->>PHP Backend: POST /handlers/booking.php + CSRF token
+    PHP Backend->>PHP Backend: 🛡️ Validate CSRF · sanitize inputs
+    PHP Backend->>Database: INSERT INTO information
+    Database-->>PHP Backend: ✅ Booking stored
+    PHP Backend-->>Frontend: 🔔 Flash success message
+    Frontend-->>User: 🎉 Toast notification
+```
 
 ---
 
@@ -248,56 +293,112 @@ This isn't another Laravel clone or a WordPress travel theme. **Tour And Travel 
 
 ---
 
-## 🏗️ Architecture
+## 🗄️ Database Schema
 
-```ascii
-┌──────────────────────────────────────────────────────────────────────┐
-│                          🌐  CLIENT SIDE                              │
-│                                                                       │
-│   ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌──────────────────┐   │
-│   │  Hero    │  │Destina-  │  │ Services │  │    Gallery       │   │
-│   │  Section │  │tion Cards│  │   Grid   │  │   + Particles    │   │
-│   └──────────┘  └──────────┘  └──────────┘  └──────────────────┘   │
-│         │              │              │                │             │
-│         └──────────────┴──────┬───────┴────────────────┘             │
-│                               │                                      │
-│                    JavaScript Layer (ES6+)                            │
-│     3D Tilt · Particles · Parallax · Scroll FX · Theme              │
-└───────────────────────────────┬──────────────────────────────────────┘
-                                │  HTTP (POST / GET / JSON)
-                                ▼
-┌──────────────────────────────────────────────────────────────────────┐
-│                          ⚙️  PHP BACKEND                             │
-│                                                                       │
-│   ┌────────────────┐  ┌────────────────┐  ┌────────────────────┐   │
-│   │   handlers/    │  │    admin/      │  │    config/         │   │
-│   │  ✦ booking     │  │  ✦ login       │  │  ✦ app.php         │   │
-│   │  ✦ login       │  │  ✦ dashboard   │  │  ✦ database.php    │   │
-│   │  ✦ register    │  │  ✦ users       │  │  ✦ helpers.php     │   │
-│   │  ✦ search      │  └────────────────┘  └────────────────────┘   │
-│   │  ✦ csrf-token  │                                                │
-│   │  ✦ flash       │                 ┌────────────────────┐         │
-│   │  ✦ logout      │                 │     helpers.php     │         │
-│   └────────────────┘                 │  ✦ Auth utilities   │         │
-│                                      │  ✦ CSRF utilities   │         │
-│                                      │  ✦ Flash utilities  │         │
-│                                      └────────────────────┘         │
-└───────────────────────────────┬──────────────────────────────────────┘
-                                │  MySQLi (Prepared Statements)
-                                ▼
-┌──────────────────────────────────────────────────────────────────────┐
-│                           🗄️  DATABASE                               │
-│                                                                       │
-│    ┌──────────────┐    ┌──────────────┐    ┌──────────────────┐     │
-│    │ information  │    │    users     │    │     admins       │     │
-│    │  (bookings)  │    │  (accounts)  │    │ (admin accounts) │     │
-│    └──────────────┘    └──────────────┘    └──────────────────┘     │
-│                                                                       │
-│         All queries via prepared statements — zero injection risk    │
-└──────────────────────────────────────────────────────────────────────┘
+```mermaid
+erDiagram
+    users {
+        int id PK
+        string full_name
+        string email UK
+        string phone
+        string password "bcrypt hash"
+        datetime created_at
+    }
+
+    information {
+        int id PK
+        int user_id FK
+        string destination
+        int travelers
+        string check_in "YYYY-MM-DD"
+        string check_out "YYYY-MM-DD"
+        string customer_name
+        string customer_email
+        string customer_phone
+        text note "optional"
+        datetime created_at
+    }
+
+    admins {
+        int id PK
+        string username UK
+        string password "bcrypt hash"
+        string email
+        datetime created_at
+    }
+
+    users ||--o{ information : "makes"
 ```
 
-### 📂 Project Map
+---
+
+## 🏗️ System Architecture
+
+```mermaid
+graph TB
+    subgraph Client["🌐 Client Side"]
+        direction LR
+        H[Hero Section]
+        DC[Destination Cards]
+        SG[Services Grid]
+        GL[Gallery + Particles]
+    end
+
+    subgraph JS["🧠 JavaScript Layer"]
+        TILT[3D Tilt]
+        PART[Particle Network]
+        PARA[Parallax]
+        SCROLL[Scroll FX]
+        THEME[Theme Switch]
+    end
+
+    subgraph PHP["⚙️ PHP Backend"]
+        direction LR
+        HAND[handlers/]
+        ADM[admin/]
+        CFG[config/]
+        HELP[helpers.php]
+    end
+
+    subgraph DB["🗄️ Database"]
+        BOOK[information]
+        USR[users]
+        ADMDB[admins]
+    end
+
+    Client --> JS
+    JS --> |HTTP POST/GET/JSON| PHP
+    PHP --> |MySQLi Prepared Statements| DB
+
+    style Client fill:#1a1a2e,stroke:#00d2ff,color:#fff
+    style JS fill:#16213e,stroke:#e94560,color:#fff
+    style PHP fill:#0f3460,stroke:#00d2ff,color:#fff
+    style DB fill:#533483,stroke:#e94560,color:#fff
+```
+
+---
+
+## 🔐 Authentication Flow
+
+```mermaid
+stateDiagram-v2
+    [*] --> Guest
+    Guest --> Registering: Click Register
+    Registering --> Guest: ❌ Validation fails
+    Registering --> AwaitingLogin: ✅ Account created
+    AwaitingLogin --> Authenticated: ✅ Login success
+    AwaitingLogin --> Guest: ❌ Wrong credentials
+    Authenticated --> Browsing: View destinations
+    Browsing --> Booking: Submit booking form
+    Booking --> Browsing: ✅ CSRF check + validation
+    Booking --> Browsing: ❌ CSRF fails
+    Authenticated --> Guest: Logout
+```
+
+---
+
+## 📂 Project Map
 
 ```ascii
 📦 TourAndTravelTouch
@@ -434,6 +535,21 @@ mysql -u root -p your_database_name < database/schema.sql
 
 ## 🚀 CI/CD Pipeline
 
+```mermaid
+gitGraph
+    commit id: "initial"
+    commit id: "feature: auth"
+    commit id: "feature: booking"
+    branch develop
+    commit id: "fix: validation"
+    commit id: "feat: admin panel"
+    checkout main
+    merge develop
+    commit id: "v2.0 release"
+    commit id: "hotfix: csrf"
+    commit id: "ci: ftp deploy"
+```
+
 Every push to `main` triggers an automated deployment:
 
 ```yaml
@@ -511,6 +627,10 @@ This project is open for educational and portfolio use. See [LICENSE](LICENSE) f
       <td align="center">
         <strong>📦 Repository</strong><br>
         <a href="https://github.com/mahfujul-01726/TourAndTravelTouch">GitHub</a>
+      </td>
+      <td align="center">
+        <strong>🔐 Admin Panel</strong><br>
+        <a href="https://tourandtraveltouch.great-site.net/backend/admin/login.php">Login</a>
       </td>
     </tr>
   </table>
