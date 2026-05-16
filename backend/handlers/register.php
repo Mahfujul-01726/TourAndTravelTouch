@@ -11,10 +11,6 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     redirect('/pages/signup.html');
 }
 
-if (!validateCsrfToken($_POST['csrf_token'] ?? '')) {
-    redirectWithFlash('/pages/signup.html', 'error', 'Invalid form submission. Please try again.');
-}
-
 $fullname = trim($_POST['fullname'] ?? '');
 $email = trim($_POST['email'] ?? '');
 $password = $_POST['password'] ?? '';
@@ -45,7 +41,7 @@ if (!$stmt) {
 mysqli_stmt_bind_param($stmt, 'sss', $fullname, $email, $passwordHash);
 
 if (mysqli_stmt_execute($stmt)) {
-    redirectWithFlash('/index.html', 'success', 'Registration successful! You can now log in.');
+    redirectWithFlash('/index.html', 'success', 'Registration successful!');
 }
 
 redirectWithFlash('/pages/signup.html', 'error', 'Registration failed. Please try again.');
