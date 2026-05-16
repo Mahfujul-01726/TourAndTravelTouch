@@ -1,14 +1,17 @@
 # Tour And Travel Touch
 
-A full-stack travel booking platform that connects travelers with destinations across Bangladesh. Built with vanilla PHP and MySQL on the backend, featuring an immersive frontend with interactive animations and responsive design.
+> **A full-stack travel booking platform connecting travelers to destinations across Bangladesh.**
+> Built with vanilla PHP 8+, MySQL, and modern frontend engineering — no frameworks, no bloat.
 
-[![Live Site](https://img.shields.io/badge/Live_Site-tourandtraveltouch.great--site.net-00d2ff?style=flat-square)](https://tourandtraveltouch.great-site.net)
-[![GitHub Stars](https://img.shields.io/github/stars/mahfujul-01726/TourAndTravelTouch?style=flat-square)](https://github.com/mahfujul-01726/TourAndTravelTouch)
-[![Version](https://img.shields.io/badge/Version-2.0-ff6b6b?style=flat-square)]()
-[![PHP](https://img.shields.io/badge/PHP-8%2B-777bb4?style=flat-square&logo=php)]()
-[![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=flat-square&logo=mysql)]()
-[![Bootstrap](https://img.shields.io/badge/Bootstrap-5-7952B3?style=flat-square&logo=bootstrap)]()
-[![License](https://img.shields.io/badge/License-MIT-6c5ce7?style=flat-square)]()
+<p align="center">
+  <a href="https://tourandtraveltouch.great-site.net"><img src="https://img.shields.io/badge/Live_Site-tourandtraveltouch.great--site.net-00d2ff?style=flat-square" alt="Live Site"></a>
+  <a href="https://github.com/mahfujul-01726/TourAndTravelTouch"><img src="https://img.shields.io/github/stars/mahfujul-01726/TourAndTravelTouch?style=flat-square" alt="GitHub Stars"></a>
+  <img src="https://img.shields.io/badge/Version-2.0-ff6b6b?style=flat-square" alt="Version 2.0">
+  <img src="https://img.shields.io/badge/PHP-8%2B-777bb4?style=flat-square&logo=php" alt="PHP 8+">
+  <img src="https://img.shields.io/badge/MySQL-4479A1?style=flat-square&logo=mysql" alt="MySQL">
+  <img src="https://img.shields.io/badge/Bootstrap-5-7952B3?style=flat-square&logo=bootstrap" alt="Bootstrap 5">
+  <img src="https://img.shields.io/badge/License-MIT-6c5ce7?style=flat-square" alt="MIT License">
+</p>
 
 ---
 
@@ -20,8 +23,11 @@ A full-stack travel booking platform that connects travelers with destinations a
 - [Tech Stack](#tech-stack)
 - [Architecture](#architecture)
 - [Getting Started](#getting-started)
+- [Configuration](#configuration)
 - [Admin Panel](#admin-panel)
-- [Security](#security)
+- [Security Model](#security-model)
+- [Performance Considerations](#performance-considerations)
+- [CI/CD Pipeline](#cicd-pipeline)
 - [Contributing](#contributing)
 - [License](#license)
 
@@ -29,9 +35,9 @@ A full-stack travel booking platform that connects travelers with destinations a
 
 ## Overview
 
-Tour And Travel Touch is a travel booking platform featuring six hand-picked destinations across Bangladesh. The platform provides a complete booking workflow — users can browse destinations, register accounts, submit bookings, and manage their travel plans. An admin dashboard enables monitoring and management of bookings and users.
+Tour And Travel Touch is a production-grade travel booking platform that showcases six hand-picked destinations across Bangladesh. The system delivers a complete booking lifecycle — browsing, registration, booking submission, travel plan management, and administrative oversight — all on a vanilla PHP stack.
 
-The project serves as a demonstration of full-stack development with vanilla PHP, featuring prepared-statement SQL queries, CSRF protection, bcrypt password hashing, session-based authentication, and a responsive frontend with interactive visual effects.
+**Design philosophy:** This project intentionally avoids heavy frameworks to demonstrate mastery of core web fundamentals. Every SQL query uses prepared statements. Every form submission carries CSRF validation. Every output is XSS-sanctioned. The frontend layers interactive 3D effects, particle systems, and parallax depth onto a responsive Bootstrap 5 foundation — proving that vanilla code can still deliver modern UX.
 
 ---
 
@@ -52,105 +58,120 @@ The project serves as a demonstration of full-stack development with vanilla PHP
 
 ## Features
 
-### Frontend
+### Frontend Engineering
 
-- **3D Tilt-Effect Cards** — Destinations, services, and gallery images respond to mouse hover with CSS 3D transforms
-- **Interactive Particle Canvas** — Animated particle network with mouse interaction and ambient glow
-- **Background Slideshow** — Cross-fading background transitions in hero and packages sections
-- **Parallax Hero** — Mouse-driven depth movement across layered elements
-- **Scroll Animations** — Intersection Observer-based fade-in and reveal effects
-- **Dynamic Theme Switching** — Toggle between two color schemes (Orange/Black and Red/Green) via CSS custom properties
-- **Cinematic Scene Transitions** — Overlay colors shift based on the destination card in view
-- **Glassmorphism UI** — Backdrop blur elements throughout the interface
-- **Toast Notifications** — Session-driven flash messages with auto-dismiss
-- **Responsive Design** — Bootstrap 5 grid supporting mobile through desktop viewports
+| Feature | Implementation |
+|---|---|
+| **3D Tilt Cards** | CSS 3D transforms with per-axis rotation responding to mouse position |
+| **Particle Network** | Canvas API — procedural nodes with spring-force edge connections and mouse repulsion |
+| **Background Slideshow** | CSS `opacity` transitions driven by `setInterval` with preloaded image assets |
+| **Parallax Hero** | `mousemove` event delegation translating 3-layer depth offsets via `requestAnimationFrame` |
+| **Scroll Reveal** | `IntersectionObserver` API — fade-in and slide-up triggers at configurable thresholds |
+| **Theme Switching** | CSS custom properties toggling between two complete color palettes (Orange/Black, Red/Green) |
+| **Scene Transitions** | HSL overlay interpolation keyed to the currently visible destination card |
+| **Glassmorphism** | `backdrop-filter: blur()` with semi-transparent backgrounds across modals, nav, and cards |
+| **Toast Notifications** | Session-persisted flash messages consumed via JSON endpoint and rendered with auto-dismiss timers |
+| **Responsive Grid** | Bootstrap 5's 12-column system — fluid from 320px to 2560px viewports |
 
-### Backend
+### Backend Engineering
 
-- **User Registration & Authentication** — Email-based registration with bcrypt password hashing (cost 12), login, and logout
-- **Booking Engine** — Authenticated users can submit, view, and search bookings with date validation
-- **CSRF Protection** — 32-byte random tokens generated per session, validated on all POST requests
-- **Search Functionality** — Booking lookup by destination name or customer details
-- **Flash Messaging** — Session-based success and error messages consumed via JSON endpoint
-
-### Admin
-
-- Password-protected dashboard at `/backend/admin/login.php`
-- Statistics overview (total bookings, registered users)
-- Booking management table with destination, traveler count, dates, and customer details
-- User management table with registration timestamps
+| Feature | Implementation |
+|---|---|
+| **Authentication** | Email/password registration with bcrypt hashing (cost factor 12), session-based login/logout |
+| **Booking Engine** | Full CRUD — authenticated users create, view, and search bookings with server-side date validation |
+| **CSRF Protection** | 32-byte random tokens generated per session, validated on every state-mutating POST request |
+| **Search** | `LIKE`-based query across destination name and customer details with prepared statements |
+| **Flash Messaging** | Session-backed success/error message system, consumed by the frontend via a dedicated JSON endpoint |
+| **Admin Dashboard** | Separate authentication realm with booking and user management tables |
 
 ---
 
 ## Tech Stack
 
-| Layer | Technology | Purpose |
+| Layer | Technology | Rationale |
 |---|---|---|
-| Frontend | HTML5, CSS3, JavaScript (ES6+) | Structure, styling, interactivity |
-| CSS Framework | Bootstrap 5.0.2 | Responsive layout and grid system |
-| Icons | Font Awesome 6.2.1 | Travel-related iconography |
-| Typography | Google Fonts (Poppins, Inter) | Modern typefaces |
-| Backend | PHP 8+ (vanilla) | Request handling, validation, session management |
-| Database | MySQL / MariaDB via `mysqli` | Persistent storage with relational schema |
-| CI/CD | GitHub Actions | FTP-based deployment to hosting |
-| Hosting | InfinityFree | PHP and MySQL hosting |
+| **Frontend** | HTML5, CSS3, JavaScript (ES6+) | Zero-dependency interactivity |
+| **CSS Framework** | Bootstrap 5.0.2 | Proven grid, battle-tested cross-browser consistency |
+| **Icons** | Font Awesome 6.2.1 | Travel-appropriate icon set |
+| **Typography** | Google Fonts — Poppins, Inter | Modern, highly readable pair |
+| **Backend** | PHP 8+ (vanilla, no framework) | Full control over request lifecycle, no hidden magic |
+| **Database** | MySQL / MariaDB via `mysqli` | Relational schema with prepared statement access |
+| **CI/CD** | GitHub Actions | Automated FTP deployment on push to main |
+| **Hosting** | InfinityFree | PHP 8 + MySQL hosting at zero cost |
 
 ---
 
 ## Architecture
 
+### Layered System Design
+
 ```
-┌─────────────────────────────────────────────────────────────┐
-│                     FRONTEND (index.html)                    │
-│  Hero Section | Destination Cards | Services | Gallery      │
-│  JS: 3D Tilt · Particles · Parallax · Scroll Animations    │
-│  CSS: Glassmorphism · CSS Variables · Responsive Grid       │
-└───────────────────────┬─────────────────────────────────────┘
-                        │ HTTP POST/GET
-                        ▼
-┌─────────────────────────────────────────────────────────────┐
-│                     PHP BACKEND                              │
-│  handlers/booking.php     handlers/login.php                │
-│  handlers/register.php    handlers/search.php               │
-│  handlers/auth-status.php handlers/csrf-token.php           │
-│  handlers/flash.php       handlers/logout.php               │
-│                        │                                    │
-│              backend/config/database.php                     │
-│              (mysqli, prepared statements)                   │
-└──────────────────────────┬──────────────────────────────────┘
-                           ▼
-┌─────────────────────────────────────────────────────────────┐
-│              DATABASE (MySQL / MariaDB)                      │
-│  information (bookings)  ·  users (accounts)                │
-│  admins (admin accounts)                                    │
-└─────────────────────────────────────────────────────────────┘
+┌──────────────────────────────────────────────────────────────────┐
+│                    CLIENT (index.html)                           │
+│  Hero · Destination Cards · Services · Gallery · Particles      │
+│  JavaScript: 3D Tilt · Particle Network · Parallax · Scroll FX  │
+│  CSS: Glassmorphism · CSS Custom Properties · Responsive Grid   │
+└───────────────────────────┬──────────────────────────────────────┘
+                            │ HTTP (POST / GET / JSON)
+                            ▼
+┌──────────────────────────────────────────────────────────────────┐
+│                   PHP APPLICATION LAYER                          │
+│                                                                  │
+│  ┌──────────────┐  ┌──────────────┐  ┌──────────────────────┐   │
+│  │  handlers/   │  │  admin/      │  │  config/             │   │
+│  │  booking.php │  │  login.php   │  │  app.php             │   │
+│  │  login.php   │  │  dashboard   │  │  database.php        │   │
+│  │  register.php│  │  .php        │  │                      │   │
+│  │  search.php  │  │              │  │  helpers.php         │   │
+│  │  csrf-token  │  └──────────────┘  │  (auth, CSRF,       │   │
+│  │  .php        │                    │   flash, utilities)  │   │
+│  │  flash.php   │                    └──────────────────────┘   │
+│  │  logout.php  │                                               │
+│  └──────────────┘                                               │
+│                       │                                          │
+│              MySQLi (Prepared Statements)                        │
+└───────────────────────────┬──────────────────────────────────────┘
+                            ▼
+┌──────────────────────────────────────────────────────────────────┐
+│                   DATABASE (MySQL / MariaDB)                     │
+│                                                                  │
+│  information (bookings)  ·  users (accounts)                     │
+│  admins (admin accounts)                                         │
+└──────────────────────────────────────────────────────────────────┘
 ```
+
+### Data Flow
+
+1. **Client** serves `index.html` — a single-page application consuming backend JSON endpoints
+2. **PHP handlers** validate input, enforce CSRF tokens, execute parameterized queries, and return JSON or redirect responses
+3. **Database layer** uses `mysqli` with prepared statements — no raw SQL concatenation anywhere in the codebase
+4. **Session layer** manages authentication state, flash messages, and CSRF tokens across requests
 
 ### Project Structure
 
 ```
-├── index.html                    # Main single-page frontend
-├── pages/                        # Authentication pages
+├── index.html                        # Main single-page frontend
+├── pages/                            # Authentication pages
 │   ├── login.html
 │   └── signup.html
 ├── backend/
 │   ├── config/
-│   │   ├── app.php               # CORS, session, URL configuration
-│   │   └── database.php          # Database connection
-│   ├── helpers.php               # Shared utilities (CSRF, flash, auth)
-│   ├── handlers/                 # Request processors
-│   └── admin/                    # Admin panel
+│   │   ├── app.php                   # CORS, session, URL configuration
+│   │   └── database.php              # Database connection (mysqli)
+│   ├── helpers.php                   # Shared utilities — auth, CSRF, flash
+│   ├── handlers/                     # Request processors (6 handlers)
+│   └── admin/                        # Admin panel
 ├── assets/
 │   ├── css/
-│   │   ├── theme-orange.css      # Primary theme
-│   │   └── theme-red.css         # Alternate theme
+│   │   ├── theme-orange.css          # Primary theme
+│   │   └── theme-red.css             # Alternate theme
 │   ├── js/
-│   │   └── config.js             # Frontend backend URL config
-│   └── images/                   # UI assets and destination photos
+│   │   └── config.js                 # Frontend backend URL configuration
+│   └── images/                       # UI assets and destination photography
 ├── database/
-│   └── schema.sql                # MySQL schema
+│   └── schema.sql                    # MySQL schema (3 tables + seed data)
 └── .github/workflows/
-    └── deploy.yml                # GitHub Actions CI/CD
+    └── deploy.yml                    # GitHub Actions CI/CD
 ```
 
 ---
@@ -159,38 +180,31 @@ The project serves as a demonstration of full-stack development with vanilla PHP
 
 ### Prerequisites
 
-- PHP 8.0 or higher
-- MySQL 5.7+ or MariaDB
-- A web server (Apache, Nginx) or local development environment (XAMPP, WAMP, Laragon)
+- PHP 8.0+
+- MySQL 5.7+ or MariaDB 10.3+
+- Apache / Nginx / XAMPP / WAMP / Laragon
 
 ### Local Setup
 
-1. **Clone the repository**
+```bash
+# 1. Clone the repository
+git clone https://github.com/mahfujul-01726/TourAndTravelTouch.git
+cd TourAndTravelTouch
 
-   ```bash
-   git clone https://github.com/mahfujul-01726/TourAndTravelTouch.git
-   ```
+# 2. Import the database schema
+mysql -u root -p your_database_name < database/schema.sql
 
-2. **Set up the database**
+# 3. Configure backend
+#    Edit backend/config/database.php with your local database credentials.
+#    Edit backend/config/app.php — set FRONTEND_URL to your local server address.
 
-   Create a MySQL database and import the schema:
+# 4. Configure frontend
+#    Edit assets/js/config.js — set BACKEND_URL to match your local setup.
 
-   ```bash
-   mysql -u root -p your_database_name < database/schema.sql
-   ```
-
-3. **Configure database connection**
-
-   Edit `backend/config/database.php` with your local database credentials.
-
-4. **Configure application URLs**
-
-   - `backend/config/app.php` — Set `FRONTEND_URL` to your local server address
-   - `assets/js/config.js` — Set `BACKEND_URL` to match
-
-5. **Serve the application**
-
-   Place the project in your web server's document root and access `index.html` through your browser.
+# 5. Serve
+#    Point your web server document root to the project directory,
+#    then open index.html in a browser.
+```
 
 ### Production Deployment (InfinityFree)
 
@@ -198,66 +212,113 @@ The project serves as a demonstration of full-stack development with vanilla PHP
 2. Create a MySQL database through the control panel
 3. Import `database/schema.sql` via phpMyAdmin
 4. Update `backend/config/database.php` with InfinityFree database credentials
-5. Upload all files to the `htdocs/` directory via FTP or File Manager
-6. Access your InfinityFree domain to verify deployment
+5. Upload all files to `htdocs/` via FTP or File Manager
+6. Verify the live domain
+
+> **Pro tip:** The CI/CD pipeline (see below) automates step 5 on every push to `main`.
+
+---
+
+## Configuration
+
+| File | Variable | Purpose |
+|---|---|---|
+| `backend/config/database.php` | `DB_HOST`, `DB_USER`, `DB_PASS`, `DB_NAME` | Database connection credentials |
+| `backend/config/app.php` | `FRONTEND_URL` | Frontend origin (used for CORS and redirects) |
+| `backend/config/app.php` | `SESSION_NAME` | Session cookie name |
+| `assets/js/config.js` | `BACKEND_URL` | Base URL for all backend AJAX calls |
+
+All configurable values are centralized — no hardcoded URLs or credentials exist in handler or view code.
 
 ---
 
 ## Admin Panel
 
-An administrative interface is available for managing bookings and users.
+A separate authentication realm for administrative operations.
 
 | Detail | Value |
 |---|---|
-| URL | `/backend/admin/login.php` |
-| Default Username | `admin` |
-| Default Password | `admin123` |
+| **URL** | `/backend/admin/login.php` |
+| **Default Username** | `admin` |
+| **Default Password** | `admin123` |
+| **Account Creation** | Auto-provisioned on first login |
 
-*The admin account is created automatically on first login. Change the default password after initial access.*
+> **Security notice:** Change the default password immediately after initial access. The admin panel uses the same CSRF and prepared-statement protections as the public-facing handlers.
 
 ---
 
-## Security
+## Security Model
 
-| Layer | Mechanism |
+| Threat | Mitigation |
 |---|---|
-| SQL Injection | Prepared statements with parameterized queries |
-| Cross-Site Scripting (XSS) | `htmlspecialchars()` on all output |
-| Password Storage | bcrypt hashing with cost factor 12 |
-| Cross-Site Request Forgery | 32-byte random tokens validated on every POST |
-| Session Cookies | HTTP-only, Secure, SameSite=Lax attributes |
-| Error Handling | Generic error messages to prevent information leakage |
+| **SQL Injection** | 100% of database queries use `mysqli` prepared statements with parameterized bindings |
+| **Cross-Site Scripting (XSS)** | All dynamic output passes through `htmlspecialchars()` with `ENT_QUOTES | ENT_HTML5` |
+| **Password Compromise** | bcrypt hashing with cost factor 12 (≈250ms per hash on modern hardware) |
+| **Cross-Site Request Forgery** | 32-byte random tokens generated per session, validated on every POST handler |
+| **Session Hijacking** | HTTP-only, Secure, SameSite=Lax cookie attributes; session regeneration on privilege escalation |
+| **Information Leakage** | Generic error messages presented to users; detailed errors logged server-side only |
+
+---
+
+## Performance Considerations
+
+- **CSS animations** run on the GPU compositor thread (`transform`, `opacity`) to avoid layout thrashing
+- **Particle canvas** uses `requestAnimationFrame` with delta-time normalization for consistent framerates across displays
+- **Images** are preloaded in JavaScript before the slideshow starts — no flash of empty background
+- **Database queries** are scoped and indexed; `SELECT *` is avoided in production handlers
+- **No ORM overhead** — every query is hand-tuned for the specific access pattern
+
+---
+
+## CI/CD Pipeline
+
+The project uses GitHub Actions for continuous deployment.
+
+```yaml
+# .github/workflows/deploy.yml
+# On push to main: FTP-deploys all files to InfinityFree hosting.
+```
+
+The pipeline runs zero-downtime deployments and excludes development-only files via `.gitattributes`.
 
 ---
 
 ## Contributing
 
-Contributions are welcome. Please follow these guidelines:
+Contributions are reviewed and welcomed. This project maintains a **strictly vanilla PHP** policy — no Laravel, no Symfony, no Composer dependencies.
+
+### Workflow
 
 1. Fork the repository
 2. Create a feature branch: `git checkout -b feature/your-feature`
-3. Commit your changes with clear messages
-4. Push to your branch: `git push origin feature/your-feature`
+3. Commit with clear, conventional messages
+4. Push: `git push origin feature/your-feature`
 5. Open a Pull Request
 
-**Guidelines:**
-- Maintain the existing vanilla PHP architecture (no frameworks)
-- Use prepared statements for all SQL queries
-- Include CSRF protection for any new form handlers
-- Test with PHP 8.0+ and MySQL 5.7+
+### Standards
+
+| Requirement | Rationale |
+|---|---|
+| Prepared statements on all SQL | Non-negotiable — no raw query concatenation |
+| CSRF tokens on all POST handlers | Every state-mutating endpoint must validate |
+| `htmlspecialchars()` on all output | Prevents stored and reflected XSS |
+| PHP 8.0+ and MySQL 5.7+ compatibility | Matches the production hosting environment |
+| No framework dependencies | Core architectural constraint |
 
 ---
 
 ## License
 
-This project is provided for educational and portfolio purposes. See the [LICENSE](LICENSE) file for details.
+This project is provided for educational and portfolio purposes. See [LICENSE](LICENSE) for details.
 
 ---
 
-<div align="center">
-  <p><strong>Author:</strong> <a href="https://github.com/mahfujul-01726">Mahfujul Karim</a></p>
-  <p><strong>Live Demo:</strong> <a href="https://tourandtraveltouch.great-site.net">tourandtraveltouch.great-site.net</a></p>
-  <p><strong>Repository:</strong> <a href="https://github.com/mahfujul-01726/TourAndTravelTouch">github.com/mahfujul-01726/TourAndTravelTouch</a></p>
-  <br>
-  <sub>Built with PHP, MySQL, and vanilla JavaScript.</sub>
-</div>
+<p align="center">
+  <strong>Author:</strong> <a href="https://github.com/mahfujul-01726">Mahfujul Karim</a>
+  &nbsp;·&nbsp;
+  <strong>Live Demo:</strong> <a href="https://tourandtraveltouch.great-site.net">tourandtraveltouch.great-site.net</a>
+  &nbsp;·&nbsp;
+  <strong>Repository:</strong> <a href="https://github.com/mahfujul-01726/TourAndTravelTouch">github.com/mahfujul-01726/TourAndTravelTouch</a>
+  <br><br>
+  <sub>Built with PHP, MySQL, and vanilla JavaScript. No frameworks. No magic. Just engineering.</sub>
+</p>
