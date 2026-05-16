@@ -5,6 +5,8 @@ declare(strict_types=1);
 require_once __DIR__ . '/../config/database.php';
 require_once __DIR__ . '/../helpers.php';
 
+setCorsHeaders();
+
 if ($_SERVER['REQUEST_METHOD'] !== 'POST' || empty($_POST['search'])) {
     redirect('/index.html');
 }
@@ -32,7 +34,7 @@ if ($stmt) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Search Results - Tour And Travel Touch</title>
-    <link rel="stylesheet" href="../../assets/css/theme-orange.css">
+    <link rel="stylesheet" href="<?= frontendUrl('assets/css/theme-orange.css') ?>">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
     <style>
@@ -64,7 +66,7 @@ if ($stmt) {
                 <h1><span>Search</span> Results</h1>
             </div>
             <div class="search-nav">
-                <a href="/index.html" class="btn-home"><i class="fa-solid fa-house"></i> Home</a>
+                <a href="<?= frontendUrl('index.html') ?>" class="btn-home"><i class="fa-solid fa-house"></i> Home</a>
                 <a href="javascript:history.back()" class="btn-back"><i class="fa-solid fa-arrow-left"></i> Back</a>
             </div>
 

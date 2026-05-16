@@ -2,15 +2,34 @@
 
 declare(strict_types=1);
 
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
+require_once __DIR__ . '/app.php';
 
-define('DB_HOST', getenv('DB_HOST') ?: 'localhost');
+configureSession();
+
+/*
+ |--------------------------------------------------------------------------
+ | INFINITYFREE SETUP INSTRUCTIONS
+ |--------------------------------------------------------------------------
+ |
+ | 1. Go to InfinityFree control panel → MySQL Databases
+ | 2. Create a new database
+ | 3. Copy the credentials (hostname, database name, username, password)
+ | 4. Open phpMyAdmin, select your database, import database/schema.sql
+ | 5. Update the 5 values below with your InfinityFree credentials
+ |
+ | Example InfinityFree values (replace with your own):
+ |   DB_HOST = 'sqlXXX.infinityfree.com'
+ |   DB_NAME = 'if0_XXXXX_firstsql'
+ |   DB_USER = 'if0_XXXXX'
+ |   DB_PASS = 'your_password_here'
+ |
+ */
+
+define('DB_HOST', getenv('DB_HOST') ?: 'sqlXXX.infinityfree.com');
 define('DB_PORT', getenv('DB_PORT') ?: '3306');
-define('DB_NAME', getenv('DB_NAME') ?: 'firstsql');
-define('DB_USER', getenv('DB_USER') ?: 'root');
-define('DB_PASS', getenv('DB_PASS') ?: '');
+define('DB_NAME', getenv('DB_NAME') ?: 'if0_XXXXX_firstsql');
+define('DB_USER', getenv('DB_USER') ?: 'if0_XXXXX');
+define('DB_PASS', getenv('DB_PASS') ?: 'your_password_here');
 
 $connection = mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_NAME, (int)DB_PORT);
 

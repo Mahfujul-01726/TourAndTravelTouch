@@ -30,10 +30,15 @@ function getFlashMessage(): ?array
     return null;
 }
 
+function frontendUrl(string $path = ''): string
+{
+    return rtrim(FRONTEND_URL, '/') . '/' . ltrim($path, '/');
+}
+
 function redirectWithFlash(string $url, string $type, string $message): void
 {
     setFlashMessage($type, $message);
-    header('Location: ' . $url);
+    header('Location: ' . frontendUrl($url));
     exit;
 }
 
@@ -50,7 +55,7 @@ function validatePositiveInt(string $value): bool
 
 function redirect(string $url): void
 {
-    header('Location: ' . $url);
+    header('Location: ' . frontendUrl($url));
     exit;
 }
 

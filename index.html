@@ -19,6 +19,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <script src="assets/js/config.js"></script>
 </head>
 <body>
 
@@ -1097,8 +1098,21 @@
         }
         animateGlow();
 
-        // ---- CSRF Token Injection ----
-        fetch('backend/handlers/csrf-token.php')
+        // ---- Backend URL / CSRF Token Injection ----
+        const API = typeof BACKEND_URL !== 'undefined' ? BACKEND_URL : '';
+
+        function resolveBackend(path) {
+            return API ? API + '/' + path.replace(/^(\.\.\/)+/, '') : path;
+        }
+
+        document.querySelectorAll('form').forEach(form => {
+            const action = form.getAttribute('action');
+            if (action && action.includes('backend/') && API) {
+                form.action = resolveBackend(action);
+            }
+        });
+
+        fetch(resolveBackend('backend/handlers/csrf-token.php'), { credentials: 'include' })
             .then(r => r.json())
             .then(data => {
                 document.querySelectorAll('form').forEach(form => {
@@ -1255,7 +1269,7 @@
             });
         })();
 
-        fetch('backend/handlers/flash.php')
+        fetch(resolveBackend('backend/handlers/flash.php'), { credentials: 'include' })
             .then(r => r.json())
             .then(data => {
                 if (data.type && data.message) {
