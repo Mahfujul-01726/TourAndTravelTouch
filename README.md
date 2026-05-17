@@ -137,6 +137,25 @@ This isn't another Laravel clone or a WordPress travel theme. **Tour And Travel 
         <br><sub>Hover-zoom gallery with particle network overlay</sub>
       </td>
     </tr>
+    <tr>
+      <td width="50%" align="center">
+        <strong>🌐 Live Interactive Homepage</strong><br>
+        <img src="assets/images/ui/live_homepage.png" alt="Live production landing page" width="100%" style="border-radius: 8px;">
+        <br><sub>Stunning live homepage with requestAnimationFrame parallax and active particle network</sub>
+      </td>
+      <td width="50%" align="center">
+        <strong>🔑 Live User Login Portal</strong><br>
+        <img src="assets/images/ui/live_login.png" alt="Live user login form" width="100%" style="border-radius: 8px;">
+        <br><sub>Secure login flow with session regeneration and interactive styling</sub>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2" align="center">
+        <strong>👑 Live Admin Authentication Portal</strong><br>
+        <img src="assets/images/ui/live_admin_login.png" alt="Live admin login page" width="80%" style="border-radius: 8px;">
+        <br><sub>Secure standalone admin gatekeeper console with server-side validations</sub>
+      </td>
+    </tr>
   </table>
 </div>
 
@@ -578,6 +597,10 @@ mysql -u root -p your_database_name < database/schema.sql
 | **👤 Default Username** | `admin` |
 | **🔑 Default Password** | `admin123` |
 | **✅ Auto-provisioned** | On first login |
+
+<br>
+<img src="assets/images/ui/live_admin_login.png" alt="Admin Panel Login Screen" width="70%" style="border-radius: 8px; border: 1px solid rgba(255,255,255,0.15);">
+<br>
 
 </div>
 
