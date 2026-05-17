@@ -1,53 +1,50 @@
-name: Deploy to FTP Webhost
+name: 🚀 Professional Auto-Deployment (InfinityFree)
 
+# This workflow runs automatically every time you push code to the 'main' branch.
+# It uses an intelligent FTP syncing action to only upload modified/new files.
 on:
   push:
-    branches: [ "main" ]
-  workflow_dispatch:
+    branches:
+      - main
+  workflow_dispatch: # Allows manual trigger from the GitHub Actions tab
 
 jobs:
-  deploy:
+  web-deploy:
+    name: 🌐 Sync Files to Web Host
     runs-on: ubuntu-latest
+    
     steps:
-      - uses: actions/checkout@v4
+      - name: 📥 Get latest codebase
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Fetches all history so the FTP deploy action can detect changed files
 
-      - name: Install LFTP
-        run: sudo apt-get update && sudo apt-get install -y lftp
-
-      - name: Debug FTP connection
-        env:
-          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
-          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
-        run: |
-          echo "Testing connection to ftpupload.net on port 21..."
-          timeout 15 bash -c 'echo > /dev/tcp/ftpupload.net/21 && echo "Port 21 OPEN" || echo "Port 21 CLOSED"'
-          echo ""
-          echo "Trying DNS resolution..."
-          nslookup ftpupload.net 2>&1 || true
-          echo ""
-          echo "Attempting FTP login (verbose)..."
-          lftp -c "
-            debug 3
-            open -u \"$FTP_USERNAME\",\"$FTP_PASSWORD\" ftpupload.net
-            pwd
-            quit
-          " 2>&1 || echo "FAILED"
-
-      - name: Deploy via LFTP
-        env:
-          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
-          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
-        run: |
-          lftp -e "
-            debug 3
-            set ftp:ssl-allow false
-            mirror -R ./ /htdocs/ \
-              --exclude-glob .git* \
-              --exclude-glob .github \
-              --exclude-glob .vscode \
-              --exclude-glob node_modules \
-              --exclude-glob README.md \
-              --exclude-glob opencode.json \
-              --exclude-glob '*.psd'
-            quit
-          " -u "$FTP_USERNAME","$FTP_PASSWORD" ftpupload.net
+      - name: 📂 Sync files via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        with:
+          # Your InfinityFree FTP host (usually ftpupload.net)
+          server: ftpupload.net
+          
+          # These credentials must be configured in your GitHub Repository Settings:
+          # Go to Settings -> Secrets and variables -> Actions -> Secrets
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          
+          # The local directory to upload (current directory)
+          local-dir: ./
+          
+          # The remote folder where InfinityFree hosts files (must be /htdocs/)
+          server-dir: /htdocs/
+          
+          # List of files/folders to completely exclude from upload to keep your server clean
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/.github/**
+            **/.vscode/**
+            **/node_modules/**
+            **/README.md
+            **/opencode.json
+            **/*.psd
+            **/Thumbs.db
+            **/.DS_Store
