@@ -140,7 +140,7 @@ This isn't another Laravel clone or a WordPress travel theme. **Tour And Travel 
     <tr>
       <td width="50%" align="center">
         <strong>🌐 Live Interactive Homepage</strong><br>
-        <img src="assets/images/ui/live_homepage.png" alt="Live production landing page" width="100%" style="border-radius: 8px;">
+        <img src="assets/images/ui/Main%20website.png" alt="Live production landing page" width="100%" style="border-radius: 8px;">
         <br><sub>Stunning live homepage with requestAnimationFrame parallax and active particle network</sub>
       </td>
       <td width="50%" align="center">
